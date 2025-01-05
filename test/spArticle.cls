@@ -169,9 +169,16 @@ bibstyle=\@sp@bibstyle^^J
             \begin{strip}
                 \textbf{摘要}. \small{\song{\@sp@abstract}}\leavevmode
             \end{strip}
-    }}{%
+    }{%
+        \typeout{
+            > > > > > > > > > >^^J
+            check point4: bibstyle abstract generate^^J
+            generate failed!!^^J
+            lang=\@sp@lang^^J
+            < < < < < < < < < <^^J
+        }
         \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
-    }}{%
+    }}}{%
     \IfStrEq{\@sp@column}{onecolumn}{%
         \begin{abstract}
             \@sp@abstract
