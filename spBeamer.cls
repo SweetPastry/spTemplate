@@ -26,6 +26,7 @@
 
 \LoadClass[aspectratio=43]{beamer}
 \setbeamertemplate{frametitle continuation}{}
+\setlength{\parskip}{15pt}
 
 
 \newcommand{\spTitle}[1]{\def\@sp@title{#1}}
@@ -55,7 +56,7 @@ bibstyle=\@sp@bibstyle^^J
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{amsmath, amssymb, amsthm, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb, refcount}
+\RequirePackage{amsmath, amssymb, amsthm, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb, refcount, multicol, hyperref}
 \newcommand{\song}{\CJKfamily{song}}
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{arrows,shapes}
@@ -245,7 +246,10 @@ bibstyle=\@sp@bibstyle^^J
 \AtBeginDocument{%
   \frame{\titlepage}
   \begin{frame}{\IfStrEq{en}{\@sp@lang}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{\PackageError{spBeamer}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}\typeout{AtBeginDocumentErrorSP}}}}
-      \tableofcontents
+      % \tableofcontents
+      \begin{multicols}{2}
+        \tableofcontents
+      \end{multicols}
   \end{frame}
 }
 \makeatother
@@ -253,8 +257,8 @@ bibstyle=\@sp@bibstyle^^J
 
 \makeatletter
 \AtEndDocument{
-  \section*{References}
-    \begin{frame}[allowframebreaks]{\IfStrEq{en}{\@sp@lang}{References}{\IfStrEq{\@sp@lang}{cn}{参考文献}{\PackageError{spBeamer}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}\typeout{AtBeginDocumentErrorSP}}}}
+  % \section*{References}
+    \begin{frame}[allowframebreaks, plain]{\IfStrEq{en}{\@sp@lang}{References}{\IfStrEq{\@sp@lang}{cn}{参考文献}{\PackageError{spBeamer}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}\typeout{AtBeginDocumentErrorSP}}}}
       \if@sp@nocite\nocite{*}\fi
       \IfStrEq{\@sp@lang}{en}{%
           \printbibliography
@@ -272,14 +276,36 @@ bibstyle=\@sp@bibstyle^^J
      }}
     \end{frame}
 
-  \section{}
-  \begin{frame}{}
+  \begin{frame}[plain]{}
     \centering
         \Huge\bfseries
     \textcolor{primary}{The End}
   \end{frame}
 }
 \makeatother
+
+\newif\ifbibsection
+\bibsectionfalse
+\AtBeginSection[]{
+  \ifbibsection
+    \relax
+  \else
+      \frame{\sectionpage} 
+  \fi
+}
+\AtBeginSubsection[]{
+  \ifbibsection
+    \relax
+  \else
+      \frame{\subsectionpage} 
+  \fi
+}
+\AtBeginEnvironment{bibliography}{
+  \bibsectiontrue
+}
+\AtEndEnvironment{bibliography}{
+  \bibsectionfalse
+}
 
 
 \newcommand{\hlmath}[2]{\colorbox{#1!17}{$\displaystyle #2$}}
