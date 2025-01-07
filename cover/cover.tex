@@ -1,0 +1,29 @@
+\documentclass{standalone}
+\usepackage{graphicx}
+\usepackage{calligra}
+\usepackage{tikz}
+
+\begin{document}
+    \begin{minipage}{0.8\linewidth}
+        \raggedright
+        \hspace{40pt}
+        \includegraphics[width=0.5\linewidth]{logo.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.6\linewidth}
+        \raggedright
+        \hspace{-40pt}
+        \begin{tikzpicture}
+            \begin{scope}[blend group = soft light]
+              \fill[red!30!white]   ( 90:0.8) circle (2);
+              \fill[green!30!white] (210:0.8) circle (2);
+              \fill[blue!30!white]  (330:0.8) circle (2);
+            \end{scope}
+            \node at ( 90:2)    {\texttt{spArticle}};
+            \node at ( 210:2)   {\texttt{spBeamer}};
+            \node at ( 330:2)   {\hspace{8pt}\texttt{spBook}};
+            \node [font=\Large] {\calligra spTemplate};
+          \end{tikzpicture}
+          \calligra Sweet Pastry
+    \end{minipage}
+\end{document}
