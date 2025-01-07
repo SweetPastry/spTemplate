@@ -10,8 +10,8 @@ This repository provides a collection of LaTeX class templates designed to enhan
 > **Warning**: ⚠️ **Not** for Journal Submissions - This is not intended as a formal academic writing template for specific journals or conferences.
 
 Purpose:
-	• 📄 Beginner-Friendly - Simplifies the LaTeX setup process, allowing users to focus on content rather than complex configurations.
-	• 🚀 Quick Start - Ideal for coursework, notes, and general document preparation.
+* 📄 Beginner-Friendly - Simplifies the LaTeX setup process, allowing users to focus on content rather than complex configurations.
+* 🚀 Quick Start - Ideal for coursework, notes, and general document preparation.
 
 ### Example
 Here is a short example for `spArticle`:

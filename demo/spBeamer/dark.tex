@@ -1,0 +1,103 @@
+\documentclass[
+    ref = refDemo,
+    style = 0
+]{spBeamer}
+\spTitle{\texttt{spBeamer} Demo}
+\spAuthor{Sweet Pastry}
+\spAuthorInShort{SP}
+\spAffiliation{Fudan University, Shanghai, China}
+\spAffiliationInShort{FDU}
+
+\begin{document}
+    \section{Introduction}
+        \begin{frame}{Logo}
+            % \begin{figure}
+                % \centering
+                \includegraphics[width=\textwidth]{cover.pdf}
+                % \caption{Cover, Sweet Pastry}
+            % \end{figure}
+        \end{frame}
+
+    \section{Math}
+        \begin{frame}{\texttt{uncover} command}
+            \uncover<+->{%
+            \begin{definition}[Linear Functional]
+                A linear functional on a vector space \( X \) over \( \mathbb{R} \) or \( \mathbb{C} \) is a map \( f : X \to \mathbb{R} \) (or \( \mathbb{C} \)) such that:
+                \[
+                f(\alpha x + \beta y) = \alpha f(x) + \beta f(y) \quad \forall x,y \in X, \ \alpha, \beta \in \mathbb{R} \ (\text{or } \mathbb{C})
+                \]
+            \end{definition}
+            \uncover<+->{
+            \begin{definition}[Sublinear Functional]
+                A map \( p: X \to \mathbb{R} \) is called sublinear if:
+                \[
+                p(x + y) \leq p(x) + p(y) \quad \text{and} \quad p(\lambda x) = \lambda p(x) \quad \forall x,y \in X, \ \lambda \geq 0
+                \]
+            \end{definition}
+            }}  
+        \end{frame}
+
+        \begin{frame}
+            \begin{theorem}[Hahn-Banach, Normed Space Version]
+                Let \( X \) be a normed space, \( M \) a subspace of \( X \), and \( f: M \to \mathbb{R} \) a bounded linear functional. Suppose \( p: X \to \mathbb{R} \) is a sublinear functional such that:
+                \[
+                f(x) \leq p(x) \quad \forall x \in M
+                \]
+                Then, there exists an extension \( F: X \to \mathbb{R} \) of \( f \) such that:
+                \[
+                F(x) \leq p(x) \quad \forall x \in X
+                \]
+                and \( F \) is linear and bounded.
+            \end{theorem}
+        \end{frame}
+        
+        \begin{frame}
+            \uncover<+->{%
+            The proof uses Zorn's Lemma and proceeds by extending \( f \) step by step to larger subspaces. The key idea is to define:
+            \uncover<+->{%
+            \[
+            F(x + \alpha y) = F(x) + \alpha f(y)
+            \]
+            \uncover<+->{%
+            for some \( y \notin M \) and ensure the extension satisfies the sublinear constraint:
+            \uncover<+->{%
+            \[
+            F(x + y) \leq p(x + y)
+            \]
+            \uncover<+->{%
+            Applying Zorn's Lemma to the collection of all extensions leads to the existence of the desired functional \( F \).
+            }}}}}
+        \end{frame}
+
+    \section{chem}
+        \begin{frame}
+            \begin{center}
+                \begin{tikzpicture}
+                    \node at (0.78,2.95) {\chemfig{
+                            <[:-25,1.176]
+                            (   
+                                -[0,0.01,,,line width=6.1pt,shorten <=-1.5pt,shorten >=-1.5pt]           
+                                >[:25,1.176] 
+                                -[:135,0.8] (
+                                        -[:30,1]-[:-35,1]OH
+                                        )
+                                -[180,1]
+                                -[:-135,0.8]
+                            )}};
+                    \node at (0,0.3){\chemfig{
+                                -[:25,1.176]
+                            (            
+                                -[:-25,1.176]
+                                <[:-135,0.8]
+                                -[180,,,,line width=4.8pt,shorten <=-2.2pt,shorten >=-2.2pt]
+                                >[:135,0.8]            
+                            )}};
+                    \draw [dashed]  (0,1.75) -- (0,2.9);
+                    \draw [dashed]  (0,0.3) -- (0,1.3);
+                    \draw (0,0.3) ellipse (0.75cm and 0.35cm);
+                    \draw (0,2.85) ellipse (0.75cm and 0.35cm);
+                    \node at (0,1.5) {\Large Fe};
+                \end{tikzpicture}
+            \end{center}
+        \end{frame}
+\end{document}

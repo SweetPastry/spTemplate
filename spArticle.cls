@@ -33,7 +33,6 @@
 > > > > > > > > > >^^J
 check point1: inner val^^J
 colorlinks=[sp: bool type]^^J
-nocite=[sp: bool type]^^J
 column=\@sp@column^^J
 lang=\@sp@lang^^J
 author=\@sp@author^^J
@@ -71,8 +70,12 @@ bibstyle=\@sp@bibstyle^^J
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, mhchem, chemfig, xcolor, graphicx, tabularx, float, cuted, tikz, array, pdfpages, lipsum, xeCJK, fancyvrb, refcount}
+\RequirePackage{amsmath, amssymb, amsfonts, amsthm, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb}
 \newcommand{\song}{\CJKfamily{song}}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{calc}
 
 
 \RequirePackage{titlesec}
@@ -138,8 +141,9 @@ bibstyle=\@sp@bibstyle^^J
         \hypersetup{%
             colorlinks = true,
             linkcolor = blue,
-            citecolor = red,
-            urlcolor = teal
+            citecolor = green,
+            urlcolor = teal,
+            filecolor = cyan,
         }
     \else
         \hypersetup{hidelinks}
@@ -198,22 +202,24 @@ bibstyle=\@sp@bibstyle^^J
 \makeatother
 
 
-\makeatletter
-\AtEndDocument{% 
-    \if@sp@nocite\nocite{*}\fi
-    \IfStrEq{\@sp@lang}{en}{%
-        \printbibliography
-    }{%
-    \IfStrEq{\@sp@lang}{cn}{%
-        \printbibliography[title=参考文献]
-    }{%
-    \typeout{
-    > > > > > > > > > >^^J
-    check point5: bibliography generate^^J
-    generate failed!^^J
-    < < < < < < < < < <^^J
-    }
-    \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
-}}}
-\makeatother
+% \makeatletter
+% \AtEndDocument{% 
+%     \if@sp@nocite\nocite{*}\fi
+%     \IfStrEq{\@sp@lang}{en}{%
+%         \printbibliography
+%     }{%
+%     \IfStrEq{\@sp@lang}{cn}{%
+%         \printbibliography[title=参考文献]
+%     }{%
+%     \typeout{
+%     > > > > > > > > > >^^J
+%     check point5: bibliography generate^^J
+%     generate failed!^^J
+%     < < < < < < < < < <^^J
+%     }
+%     \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
+% }}}
+% \makeatother
 
+\newcommand{\hlmath}[2]{\colorbox{#1!17}{$\displaystyle #2$}}
+\newcommand{\hltext}[2]{\colorbox{#1!17}{#2}}
