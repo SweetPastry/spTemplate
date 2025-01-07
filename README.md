@@ -20,7 +20,7 @@ Here is a short example for `spArticle`:
     title = 中文标题,
     author = 香饽饽,
     affiliation = 复旦大学,
-    column = onecolumn,
+    column = twocolumn,
     ref = refDemo.bib,
     lang = cn
 ]{spArticle}
@@ -46,7 +46,7 @@ Refer to the instruction document in the doc folder for a quick guide on how to 
 
 ### Compilation
 
-To compile your document, use xelatex and biber in the following order:
+To compile your document, use **`xelatex`** and **`biber`** in the following order:
 
 ```bash
 xelatex <texfile>
