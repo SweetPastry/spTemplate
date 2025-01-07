@@ -8,7 +8,6 @@
     prefix = @sp@
 }
 \DeclareBoolOption[true]{colorlinks}
-\DeclareBoolOption[true]{nocite}
 \DeclareStringOption[twocolumn]{column}
 \DeclareStringOption[en]{lang}
 \DeclareStringOption[author]{author}
@@ -33,7 +32,6 @@
 > > > > > > > > > >^^J
 check point1: inner val^^J
 colorlinks=[sp: bool type]^^J
-nocite=[sp: bool type]^^J
 column=\@sp@column^^J
 lang=\@sp@lang^^J
 author=\@sp@author^^J
@@ -71,7 +69,7 @@ bibstyle=\@sp@bibstyle^^J
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, mhchem, chemfig, xcolor, graphicx, tabularx, float, cuted, tikz, array, pdfpages, lipsum, xeCJK, fancyvrb, refcount}
+\RequirePackage{amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, mhchem, chemfig, xcolor, graphicx, tabularx, float, cuted, tikz, array, pdfpages, lipsum, xeCJK}
 \newcommand{\song}{\CJKfamily{song}}
 
 
@@ -200,7 +198,7 @@ bibstyle=\@sp@bibstyle^^J
 
 \makeatletter
 \AtEndDocument{% 
-    \if@sp@nocite\nocite{*}\fi
+    \nocite{*}
     \IfStrEq{\@sp@lang}{en}{%
         \printbibliography
     }{%
