@@ -7,11 +7,11 @@ This repository provides a collection of LaTeX class templates designed to enhan
 > **Note**: This template is designed to provide an easy-to-use LaTeX writing framework for undergraduates who are new to LaTeX but need it for their writing tasks. 
 
 > [!Warning]
-> **Warning**: ⚠️ **Not** for Journal Submissions – This is not intended as a formal academic writing template for specific journals or conferences.
+> **Warning**: ⚠️ **Not** for Journal Submissions - This is not intended as a formal academic writing template for specific journals or conferences.
 
 Purpose:
-	•	📄 Beginner-Friendly – Simplifies the LaTeX setup process, allowing users to focus on content rather than complex configurations.
-	•	🚀 Quick Start – Ideal for coursework, notes, and general document preparation.
+	•	📄 Beginner-Friendly - Simplifies the LaTeX setup process, allowing users to focus on content rather than complex configurations.
+	•	🚀 Quick Start - Ideal for coursework, notes, and general document preparation.
 
 ### Example
 Here is a short example for `spArticle`:
@@ -29,7 +29,7 @@ Here is a short example for `spArticle`:
 \end{document}
 ```
 **may** seems like:
-![demo](image/README/1736233009539.png)
+![demo](example.png)
 Overall, the main `.tex` file requires no unnecessary or excessive code, allowing users to focus solely on their content without worrying about complex syntax or difficult-to-remember commands.
 
 # How to Use
