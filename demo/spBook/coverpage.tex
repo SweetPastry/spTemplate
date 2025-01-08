@@ -1,0 +1,96 @@
+\begin{titlepage}
+	\begin{tikzpicture}[remember picture, overlay, pencildraw/.style={
+		color=octa, thick,
+		decorate,
+		decoration={random steps, segment length=1pt, amplitude=0.7pt}
+	}] 
+		\node[anchor=center] (title) at ([xshift=19em, yshift=-10em] current page.north west)
+		{ \fontsize{45}{45}\texttt{spBook}};
+
+		\node[anchor=center] (volume) at ([yshift=-7em] title.center) {\fontsize{30}{30}\textbf{DEMO}};
+
+		\node[anchor=west] (author) at ([yshift=-5em, xshift=-4pt] volume.south west) {\fontsize{18}{18}Sweet Pastry};
+		\node[anchor=west] at ([xshift=-60pt, yshift=-15pt] author.east) {\fontsize{18}{18}Coverpage code \textbf{heavily} based on \href{https://github.com/wenweili/AlJabr-1/blob/master/coverpage.tex}{Li Wen-wei} and \href{https://texample.net/parallelepiped/}{Axel Pavillet}};
+
+		\draw[line width=2pt, color=black!70!gray] ([xshift=-2.5em, yshift=1em] author.north west) -- ++(25em,0);
+		\shade[top color=gray, bottom color=black,] ([xshift=-1em, yshift=1em] title.north west) rectangle ++(-1em,-20em);
+
+		\coordinate (pic) at ([xshift=-23em, yshift=5em] current page.south east);
+		\coordinate (pic2) at ([xshift=3em] pic);
+
+		\begin{scope}[shift = (pic2), scale=0.75, opacity=0.55]
+			\def \tta{ -10.00000000000000 }
+			\def \k{    -3.00000000000000 } 
+			\def \l{     6.00000000000000 }
+			\def \d{     5.00000000000000 }
+			\def \h{     7.00000000000000 }
+			\coordinate (A) at (0,0); 
+			\coordinate (B) at ({-\h*sin(\tta)},{\h*cos(\tta)}); 
+			\coordinate (C) at ({-\h*sin(\tta)-\d*sin(\k*\tta)},
+								{\h*cos(\tta)+\d*cos(\k*\tta)}); 
+			\coordinate (D) at ({-\d*sin(\k*\tta)},{\d*cos(\k*\tta)}); 
+			
+			\coordinate (Ap) at (\l,0); 
+			\coordinate (Bp) at ({\l-\h*sin(\tta)},{\h*cos(\tta)}); 
+			\coordinate (Cp) at ({\l-\h*sin(\tta)-\d*sin(\k*\tta)},
+								{\h*cos(\tta)+\d*cos(\k*\tta)}); 
+			\coordinate (Dp) at ({\l-\d*sin(\k*\tta)},{\d*cos(\k*\tta)}); 
+			
+			\fill[black]  (A) circle [radius=2pt]; 
+			\fill[red]    (B) circle [radius=2pt]; 
+			\fill[black]  (C) circle [radius=2pt]; 
+			\fill[red]    (D) circle [radius=2pt]; 
+			\fill[red]   (Ap) circle [radius=2pt]; 
+			\fill[black] (Bp) circle [radius=2pt]; 
+			\fill[red]   (Cp) circle [radius=2pt]; 
+			\fill[black] (Dp) circle [radius=2pt]; 
+			
+			\filldraw[draw=red,bottom color=red!50!black, top color=cyan!50]
+			(B) -- (Cp) -- (D);
+			\filldraw[draw=red,bottom color=red!50!black, top color=cyan!50]
+			(B) -- (D)  -- (Ap);
+			\filldraw[draw=red,bottom color=red!50!black, top color=cyan!50]
+			(B) -- (Cp) -- (Ap);
+			
+			\draw[red,-,very thick] (Ap) --  (D)
+									(Ap) --  (B)
+									(Ap) -- (Cp)
+									(B)  --  (D)
+									(Cp) --  (D)
+									(B)  -- (Cp);
+			
+			\draw [-,thin] (B)  --  (A)
+						(Ap) -- (Bp)
+						(B)  --  (C)
+						(D)  --  (C)
+						(A)  --  (D)
+						(Ap) --  (A)
+						(Cp) --  (C)
+						(Bp) --  (B)
+						(Bp) -- (Cp);
+		
+			\draw [gray,-,thin] (Dp) -- (Cp);
+								(Dp) --  (D);
+								(Ap) -- (Dp);
+			
+			\draw (Ap) node [right]           {$A$}
+				(Bp) node [right, gray]     {$F$}
+				(Cp) node [right]           {$D$}
+				(C)  node [left,gray]       {$E$}
+				(D)  node [left]            {$B$}
+				(A)  node [left,gray]       {$G$}
+				(B)  node [above left=+5pt] {$C$}
+				(Dp) node [right,gray]      {$H$};
+			
+			\fill[red]   (B) circle [radius=2pt]; 
+			\fill[gray] (Dp) circle [radius=2pt]; 
+			
+			\draw[red,-,dashed, thin] (A)  -- (Dp)
+									(A)  -- (Bp)
+									(A)  --  (C)
+									(Bp) -- (Dp)
+									(C)  -- (Dp)
+									(Bp) --  (C);
+		\end{scope}	
+	\end{tikzpicture}
+\end{titlepage}
