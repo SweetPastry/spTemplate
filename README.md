@@ -17,15 +17,16 @@ Purpose:
 Here is a short example for `spArticle`:
 ```LaTeX
 \documentclass[
-    title = 中文标题,
-    author = 香饽饽,
-    affiliation = 复旦大学,
     column = twocolumn,
     ref = refDemo.bib,
     lang = cn
 ]{spArticle}
+\spTitle{中文标题}
+\spAuthor{香饽饽}
+\spAffiliation{复旦大学}
+
 \begin{document}
-    \lipsum[1-3]
+    \lipsum[1-3]    % 假设是中文假文 assume here is chinese blindtext
 \end{document}
 ```
 **may** seems like:
@@ -34,13 +35,13 @@ Overall, the main `.tex` file requires no unnecessary or excessive code, allowin
 
 # How to Use
 
-To get started, clone this repository to your local machine and copy the .cls file to your working directory.
+To get started, clone this repository to your local machine and copy the `.cls` file to your working directory.
 
-```bash
+```sh
 git clone https://github.com/SweetPastry/spTemplate.git
 ```
 
-For example, if you need to start writing an article for a homework assignment, copy spArticle.cls to your homework folder. Then, create a new .tex file for the content and a .bib file for references (if needed).
+For example, if you need to start writing an article for a homework assignment, copy `spArticle.cls` to your homework folder. Then, create a new `.tex` file for the content and a `.bib` file for references (if needed).
 
 Refer to the instruction document in the doc folder for a quick guide on how to use the template.
 
@@ -48,7 +49,7 @@ Refer to the instruction document in the doc folder for a quick guide on how to 
 
 To compile your document, use **`xelatex`** and **`biber`** in the following order:
 
-```bash
+```sh
 xelatex <texfile>
 biber <texfile>
 xelatex <texfile>
@@ -61,4 +62,4 @@ This sequence ensures proper handling of references and document structure.
 If you encounter any errors or warnings, please feel free to report them to the author.
 
 # License
-The entire codebase is under CC BY 4.0.
+The entire codebase is under ***CC BY 4.0***.
