@@ -68,7 +68,7 @@ coverpage = \@sp@coverpage^^J
 \usetikzlibrary{calc}
 \IfStrEq{\@sp@lang}{en}{%
     \theoremheaderfont{\bfseries\sffamily}
-    \theorembodyfont{\normalfont}
+    \theorembodyfont{\slshape}
     \newtheorem{theorem}{Theorem}[section]
     \newtheorem{corollary}{Corollary}[section]
     \newtheorem{lemma}{Lemma}[section]
@@ -117,6 +117,29 @@ coverpage = \@sp@coverpage^^J
 }{%
 \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}
+% \makeatletter
+% \forcsvlist{\AtBeginEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}{%
+%     \ifx\@optionalarg\@empty
+%         \relax
+%     \else
+%         \index[statement]{\@optionalarg}
+%     \fi
+% }
+% \makeatother
+\newcommand{\defineIndexedEnvironment}[1]{%
+    \AtEndEnvironment{#1}{%
+        \ifcsname #1name\endcsname
+            \expandafter\ifx\csname #1name\endcsname\@empty
+                \typeout{SP: #1name exists but is empty.}
+            \else
+                \typeout{SP: \csname #1name\endcsname writed.}
+                \index[statement]{\csname #1name\endcsname}
+            \fi
+        \else
+            \typeout{SP: #1name does not exist.}
+        \fi
+}}
+\forcsvlist{\defineIndexedEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}
 
 
 
@@ -164,26 +187,6 @@ coverpage = \@sp@coverpage^^J
 			\step[fieldset=url, null]
 			\step[fieldset=urldate, null]
 }}}
-
-\RequirePackage[pdfpagelabels=true, breaklinks=true]{hyperref}
-\AtEndPreamble{%
-    \if@sp@colorlinks
-        \hypersetup{%
-            colorlinks = true,
-            linkcolor = blue,
-            citecolor = green,
-            urlcolor = teal,
-            filecolor = cyan,
-            pdfauthor = {\@sp@author},
-            pdftitle = {\@sp@title},
-            pdfkeywords = {spBook},
-            CJKbookmarks = true
-        }
-    \else
-        \hypersetup{hidelinks}
-    \fi
-}
-
 
 
 \AtEndPreamble{
@@ -236,12 +239,45 @@ coverpage = \@sp@coverpage^^J
     }}
 
     \RequirePackage[xindy, splitindex]{imakeidx}
+    \theoremlisttype{all}
+    \makeindex
+    \makeindex[
+        columns = 2,
+        program = truexindy,
+        intoc = true,
+        options = -M texindy -I xelatex -C utf8,
+        name = statement, 
+        title = {Statement Index}
+    ]
+
+    \RequirePackage[
+        unicode, 
+        bookmarksnumbered, 
+        pdfpagelabels = true, 
+        breaklinks = true, 
+        hyperindex = true
+    ]{hyperref}
+    \if@sp@colorlinks
+        \hypersetup{%
+            colorlinks = true,
+            linkcolor = blue,
+            citecolor = green,
+            urlcolor = teal,
+            filecolor = cyan,
+            pdfauthor = {\@sp@author},
+            pdftitle = {\@sp@title},
+            pdfkeywords = {spBook},
+            CJKbookmarks = true
+        }
+    \else
+        \hypersetup{hidelinks}
+    \fi
 }
 
 
 \g@addto@macro\frontmatter{
     \ifdefempty{\@sp@coverpage}{\relax}{%
-        \typeout{Here is spBook compile messenge: the coverpage macro is not empty with defination \@sp@coverpage.}
+        \typeout{Here is spBook compile messenge: the coverpage macro is not empty with definition \@sp@coverpage.}
         \pagestyle{empty}
         \renewcommand{\thepage}{C\arabic{page}}
 
@@ -258,6 +294,8 @@ coverpage = \@sp@coverpage^^J
         }}}
 		\pagestyle{fancy}
 		\pagenumbering{roman}
+        \maketitle
+        \tableofcontents
     }
 
     \setcounter{page}{1}
@@ -306,6 +344,10 @@ coverpage = \@sp@coverpage^^J
     generate failed!^^J
     < < < < < < < < < <^^J
     }
-}}}
+    }}
+    \listoffigures
+    \listoftables
+    \printindex[statement]
+}
 \makeatother
 \endinput

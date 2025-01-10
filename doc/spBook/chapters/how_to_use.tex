@@ -1,0 +1,70 @@
+\spChapter{How to Use \texttt{spBook}?}
+
+\section{Preamble}
+    The \texttt{spBook} class encapsulates most of the configurations for book typography, including PDF hyperref setup and various other features. This means that unless you wish to add new functionality or modify existing features, there is no need to write redundant \LaTeX code in your preamble. Simply follow the provided structure.
+
+    This template also defines several new commands to pass information to private macros within \texttt{spBook}. These macros are used to customize and individualize your PDF, such as setting the author name.
+
+    \begin{Verbatim}
+        \documentclass[
+            ref = <bib File>
+            bibstyle = <bib Style>,
+            lang = <en/cn>,
+            coverpage = <PDF/.tex>,
+            geometry = <a4/b5>,
+            nocite = <true/false>,
+            colorlinks = <true/false>
+        ]{spBook}
+
+        \spTitle{<Your PDF Title>}
+        \spAuthor{<Your PDF Author>}
+        \spDate{<default \today>}
+
+        \begin{document}
+            \frontmatter
+            % """
+            % here is preface part, for example:
+            \spChapter[<Title for display>]{%
+            <Title for content table and page header>}
+                \lipsum[1-5]
+            % """
+
+            \mainmatter
+            % """
+            % here is main text part, for example:
+            \spChapter[Experiment Principle]{Experiment Principle}
+                \lipsum[5-10]
+            \spChapter[Conclusion]{Conclusion}
+                \lipsum[5-10]
+            % """
+        \end{document}
+    \end{Verbatim}
+
+\section{Options}
+    In this section, I will provide a detailed explanation of each option and its functionality.
+
+    \begin{enumerate}
+        \item\texttt{ref}: A string macro that specifies the name of your bibliography file. If your essay includes references, you must assign your \texttt{.bib} file name to \texttt{ref}. For example, use \texttt{ref=myRef} or \texttt{ref=myRef.bib}. The default value is \texttt{ref}.
+        \item\texttt{bibstyle}: A string macro that allows you to specify the desired bibliography style. For instance, you can set \texttt{bibstyle=apa}. The default value is \texttt{ieee} for English documents (\texttt{lang=en}) and \texttt{gb7714-2015} for Chinese documents (\texttt{lang=cn}).
+        \item\texttt{lang}: A string macro that specifies the document language. The options are \texttt{en} (English) and \texttt{cn} (Chinese), with the default being \texttt{en}.
+        \item\texttt{coverpage}: A string macro that allows you to include a custom cover page, either as a PDF or a \texttt{.tex} file. The specified cover page will be added at the beginning of the final PDF.
+        \item\texttt{nocite}: A boolean macro that determines whether all entries in the \texttt{.bib} file are included in the bibliography, regardless of citation. The default value is \texttt{true}, meaning all entries will be printed even if they are not cited. If you use a large \texttt{.bib} file as a general citation library, you may wish to set this to \texttt{false}.
+        \item\texttt{colorlinks}: A boolean macro that specifies whether hyperlinks in the final PDF should be colorful. The default value is \texttt{true}. If you prefer plain hyperlinks, set this to \texttt{false}.
+    \end{enumerate}
+
+\section{Command}
+    The \texttt{spBook} class introduces several enhanced commands for specifying key information, enabling more streamlined and efficient document customization.
+    \begin{enumerate}
+        \item \texttt{\textbackslash spTitle\{\}}: Functions similarly to \texttt{\textbackslash title\{\}} and is used in the same manner.
+        \item \texttt{\textbackslash spAuthor\{\}}: Functions similarly to \texttt{\textbackslash author\{\}} and is used in the same manner.
+        \item \texttt{\textbackslash spDate\{\}}: Functions similarly to \texttt{\textbackslash date\{\}} and is used in the same manner.
+        \item \texttt{\textbackslash spChapter[]{}}: This command provides enhanced customization for chapter titles. The required parameter specifies the text used for the table of contents and the page header, while the optional parameter customizes the chapter title displayed at the start of the chapter. For instance, \texttt{\textbackslash spChapter[Your Title]\{your title\}} will display \emph{Your Title} at the beginning of the chapter, while \emph{your title} will appear in the table of contents and the page header. It is important to note the difference between \texttt{\textbackslash spChapter\{your title\}} and \texttt{\textbackslash spChapter[]{your title}}. In the first case, the required parameter (\emph{your title}) is automatically used as the value for the optional parameter. In contrast, the second usage explicitly passes an empty string to the optional parameter, leaving the chapter title at the start of the chapter blank or stylized as per additional customization.
+    \end{enumerate}
+
+\section{Document}
+    To allow users full control over the typographical logic of their document, essential commands for mode switching have not been all encapsulated. Users are expected to invoke these commands manually as needed.
+
+    \begin{enumerate}
+        \item \texttt{\textbackslash frontmatter}: In the original \LaTeX, this command serves as a global compilation flow control mechanism but takes effect at a later stage. As a result, it may not be considered suitable for encapsulation. However, \texttt{spBook} has encapsulated several other essential yet manually invoked commands, such as \texttt{\textbackslash maketitle} and \texttt{\textbackslash tableofcontents}, into \texttt{\textbackslash frontmatter}. In other words, once the user declares \texttt{\textbackslash frontmatter} to switch the book stage to the preface section, the book title and table of contents will be generated automatically.
+        \item \texttt{\textbackslash mainmatter}: Users are expected to manually use this commands to explicitly enter the main text state.
+    \end{enumerate}

@@ -117,6 +117,25 @@ coverpage = \@sp@coverpage^^J
 }{%
 \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}
+% \makeatletter
+% \forcsvlist{\AtBeginEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}{%
+%     \ifx\@optionalarg\@empty
+%         \relax
+%     \else
+%         \index[statement]{\@optionalarg}
+%     \fi
+% }
+% \makeatother
+\newcommand{\defineIndexedEnvironment}[1]{%
+    \AtBeginEnvironment{#1}{%
+        \ifx\csname #1name\endcsname\@empty
+            \relax
+        \else
+            \typeout{SP: \csname #1name\endcsname writed.}
+            \index[statement]{\csname #1name\endcsname}
+        \fi
+}}
+\forcsvlist{\defineIndexedEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}
 
 
 
@@ -236,12 +255,15 @@ coverpage = \@sp@coverpage^^J
     }}
 
     \RequirePackage[xindy, splitindex]{imakeidx}
+    \theoremlisttype{all}
+    \makeindex
+    \makeindex[name=statement, title=Statement Index]
 }
 
 
 \g@addto@macro\frontmatter{
     \ifdefempty{\@sp@coverpage}{\relax}{%
-        \typeout{Here is spBook compile messenge: the coverpage macro is not empty with defination \@sp@coverpage.}
+        \typeout{Here is spBook compile messenge: the coverpage macro is not empty with definition \@sp@coverpage.}
         \pagestyle{empty}
         \renewcommand{\thepage}{C\arabic{page}}
 
@@ -306,6 +328,10 @@ coverpage = \@sp@coverpage^^J
     generate failed!^^J
     < < < < < < < < < <^^J
     }
-}}}
+    }}
+    \listoffigures
+    \listoftables
+    \printindex[statement]
+}
 \makeatother
 \endinput

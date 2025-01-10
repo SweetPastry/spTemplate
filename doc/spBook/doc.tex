@@ -1,0 +1,22 @@
+\documentclass[
+    ref = ./chapters/ref.bib,
+    coverpage = ./chapters/coverpage.tex,
+    geometry = b5,
+    lang = en,
+]{spBook}
+\spTitle{\texttt{spTitle} Document}
+\spAuthor{Sweet Pastry}
+\date{\today}
+
+
+
+\begin{document}
+    \newcommand{\inputChapter}[1]{\input{./chapters/#1}}
+
+    \frontmatter
+    \inputChapter{preface}
+
+    \mainmatter
+    \inputChapter{how_to_use}
+    \inputChapter{math_env}
+\end{document}
