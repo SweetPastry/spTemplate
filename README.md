@@ -30,7 +30,7 @@ Here is a short example for `spArticle`:
 \end{document}
 ```
 **may** seems like:
-![demo](pic/example.png)
+![demo](pic/cn2col.png)
 Overall, the main `.tex` file requires no unnecessary or excessive code, allowing users to focus solely on their content without worrying about complex syntax or difficult-to-remember commands.
 
 ### feature library
