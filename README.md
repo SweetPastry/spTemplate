@@ -1,4 +1,4 @@
-![Cover](cover.png)
+![Cover](pic/cover.png)
 
 # spTemplate
 This repository provides a collection of LaTeX class templates designed to enhance the clarity and conciseness of the main .tex files. It allows users to focus on the content of their work, rather than the intricacies of LaTeX code.
@@ -30,8 +30,27 @@ Here is a short example for `spArticle`:
 \end{document}
 ```
 **may** seems like:
-![demo](example.png)
+![demo](pic/example.png)
 Overall, the main `.tex` file requires no unnecessary or excessive code, allowing users to focus solely on their content without worrying about complex syntax or difficult-to-remember commands.
+
+### feature library
+spArticle, two column mode:
+![spArtibleDemo1](pic/spArticleDemo1.png)
+![spArticleDemo2](pic/spArticleDemo2.png)
+
+spBeamer, style2:
+![spBeamerDomo1](pic/spBeamerDemo1.png)
+![spBeamerDomo2](pic/spBeamerDemo2.png)
+![spBeamerDomo3](pic/spBeamerDemo3.png)
+![spBeamerDomo4](pic/spBeamerDemo4.png)
+![spBeamerDomo5](pic/spBeamerDemo5.png)
+
+spBook:
+![spBookDemo1](pic/spBookDemo1.png)
+![spBookDemo2](pic/spBookDemo2.png)
+![spBookDemo3](pic/spBookDemo3.png)
+![spBookDemo5](pic/spBookDemo4.png)
+
 
 # How to Use
 
