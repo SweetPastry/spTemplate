@@ -7,6 +7,7 @@
     prefix = @sp@
 }
 \DeclareBoolOption[true]{colorlinks}
+\DeclareBoolOption[false]{colorbox}
 \DeclareBoolOption[true]{nocite}
 % \DeclareStringOption[twocolumn]{column}
 \DeclareStringOption[en]{lang}
@@ -60,12 +61,16 @@ coverpage = \@sp@coverpage^^J
 
 \PassOptionsToPackage{version=4}{mhchem}
 \PassOptionsToPackage{table}{xcolor}
-\RequirePackage{amsmath, amssymb, amsfonts, ntheorem, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb}
+\PassOptionsToPackage{most}{tcolorbox}
+\RequirePackage{amsmath, amssymb, amsfonts, ntheorem, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb, tcolorbox}
 \newcommand{\song}{\CJKfamily{song}}
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{arrows,shapes}
 \usetikzlibrary{tikzmark}
 \usetikzlibrary{calc}
+
+
+
 \IfStrEq{\@sp@lang}{en}{%
     \theoremheaderfont{\bfseries\sffamily}
     \theorembodyfont{\slshape}
@@ -117,15 +122,6 @@ coverpage = \@sp@coverpage^^J
 }{%
 \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}
-% \makeatletter
-% \forcsvlist{\AtBeginEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}{%
-%     \ifx\@optionalarg\@empty
-%         \relax
-%     \else
-%         \index[statement]{\@optionalarg}
-%     \fi
-% }
-% \makeatother
 \newcommand{\defineIndexedEnvironment}[1]{%
     \AtEndEnvironment{#1}{%
         \ifcsname #1name\endcsname
@@ -140,6 +136,53 @@ coverpage = \@sp@coverpage^^J
         \fi
 }}
 \forcsvlist{\defineIndexedEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}
+
+\if@sp@colorbox
+    \definecolor{tudelft-groen}{RGB}{108,194,74}
+    \definecolor{tudelft-paars}{RGB}{111,29,119}
+    \definecolor{tudelft-roze}{RGB}{239,96,163}
+    \definecolor{tudelft-rood}{RGB}{224,60,49}
+    \definecolor{tudelft-donkerblauw}{RGB}{12,35,64}
+    \definecolor{tudelft-bosgroen}{RGB}{0,155,119}
+    \definecolor{tudelft-cyaan}{RGB}{0,166,214}
+    \definecolor{tudelft-wit}{RGB}{255,255,255}
+    \definecolor{tudelft-zwart}{RGB}{0,0,0}
+    \definecolor{tudelft-turkoois}{RGB}{0,184,200}
+    \definecolor{tudelft-koningsblauw}{RGB}{0,118,194}
+    \definecolor{tudelft-bordeaux}{RGB}{165,0,52}
+    \definecolor{tudelft-oranje}{RGB}{237,104,66}
+    \definecolor{tudelft-geel}{RGB}{255,184,28}
+    \definecolor{tudelft-donkergrijs}{RGB}{92,92,92}
+    
+    \newcommand{\tcbsetColor}[2]{%
+        \tcolorboxenvironment{#2}{
+                enhanced,
+                breakable,
+                colback = #1!3!white,
+                frame hidden,
+                borderline west = {2pt}{0pt}{#1},
+                coltitle = #1,
+                fonttitle = \bfseries\sffamily,
+                boxrule = 0sp,
+                sharp corners,
+                detach title,
+                before upper = \tcbtitle\par\smallskip,
+                description font = \mdseries,
+                separator sign none,
+                segmentation style={solid, #1},
+    }}
+    % \makeatletter
+    \tcbsetColor{tudelft-groen}{definition}
+    \tcbsetColor{tudelft-groen}{definition-theorem}
+    \tcbsetColor{tudelft-groen}{definition-proposition}
+    \tcbsetColor{tudelft-paars}{theorem}
+    \tcbsetColor{tudelft-roze}{corollary}
+    \tcbsetColor{tudelft-rood}{lemma}
+    \tcbsetColor{tudelft-donkerblauw}{proposition}
+    % \tcbsetColor{tudelft-bosgroen}{remark}
+    % \tcbsetColor{tudelft-bosgroen}{example}
+    % \makeatother
+\fi
 
 
 
