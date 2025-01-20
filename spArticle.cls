@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spArticle}[2024/01/03 version: 1.00.01, Author: Sweet Pastry]
+\ProvidesClass{spArticle}[2024/01/03 version: 1.00.02, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring}
@@ -18,6 +18,7 @@
 \DeclareStringOption[Here is abstract]{abstract}
 \DeclareStringOption[ref]{ref}
 \DeclareStringOption[undefined]{bibstyle}
+\DeclareStringOption[undefined]{mathfont}
 \ProcessKeyvalOptions*
 \relax
 
@@ -70,13 +71,21 @@ bibstyle=\@sp@bibstyle^^J
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{amsmath, amssymb, amsfonts, ntheorem, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb}
+\RequirePackage{amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb}
 \newcommand{\song}{\CJKfamily{song}}
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{arrows,shapes}
 \usetikzlibrary{tikzmark}
 \usetikzlibrary{calc}
-
+\IfStrEq{\@sp@mathfont}{undefined}{\relax}{%
+\IfStrEq{\@sp@mathfont}{palatino}{\let\widering\relax\RequirePackage{newpxmath}}{%
+\IfStrEq{\@sp@mathfont}{fourier}{\let\widering\relax\RequirePackage{fourier}}{%
+\IfStrEq{\@sp@mathfont}{fouriernc}{\let\widering\relax\RequirePackage{fouriernc}}{%
+\IfStrEq{\@sp@mathfont}{times}{\let\widering\relax\RequirePackage{newtxmath}}{%
+\IfStrEq{\@sp@mathfont}{arev}{\RequirePackage{arev}}{%
+\IfStrEq{\@sp@mathfont}{mathdesign}{\RequirePackage{mathdesign}}{%
+\IfStrEq{\@sp@mathfont}{cmbridge}{\RequirePackage{cmbright}}{%
+\IfStrEq{\@sp@mathfont}{euler}{\let\widering\relax\RequirePackage{eulerpx}}{\relax}}}}}}}}}
 
 \RequirePackage{titlesec}
 \AtEndPreamble{%
@@ -202,24 +211,24 @@ bibstyle=\@sp@bibstyle^^J
 \makeatother
 
 
-% \makeatletter
-% \AtEndDocument{% 
-%     \if@sp@nocite\nocite{*}\fi
-%     \IfStrEq{\@sp@lang}{en}{%
-%         \printbibliography
-%     }{%
-%     \IfStrEq{\@sp@lang}{cn}{%
-%         \printbibliography[title=参考文献]
-%     }{%
-%     \typeout{
-%     > > > > > > > > > >^^J
-%     check point5: bibliography generate^^J
-%     generate failed!^^J
-%     < < < < < < < < < <^^J
-%     }
-%     \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
-% }}}
-% \makeatother
+\makeatletter
+\AtEndDocument{% 
+    \if@sp@nocite\nocite{*}\fi
+    \IfStrEq{\@sp@lang}{en}{%
+        \printbibliography
+    }{%
+    \IfStrEq{\@sp@lang}{cn}{%
+        \printbibliography[title=参考文献]
+    }{%
+    \typeout{
+    > > > > > > > > > >^^J
+    check point5: bibliography generate^^J
+    generate failed!^^J
+    < < < < < < < < < <^^J
+    }
+    \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
+}}}
+\makeatother
 
 \newcommand{\hlmath}[2]{\colorbox{#1!17}{$\displaystyle #2$}}
 \newcommand{\hltext}[2]{\colorbox{#1!17}{#2}}
