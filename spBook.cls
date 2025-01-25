@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2024/01/08 version: 1.01.01, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2024/01/08 version: 1.02.01, Author: Sweet Pastry]
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse}
 \SetupKeyvalOptions{%
@@ -218,14 +218,31 @@ coverpage = \@sp@coverpage^^J
     \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}}
 
+\RequirePackage[
+    unicode, 
+    bookmarksnumbered, 
+    pdfpagelabels = true, 
+    breaklinks = true, 
+    hyperindex = true
+]{hyperref}
+\if@sp@colorlinks
+    \hypersetup{%
+        colorlinks = true,
+        linkcolor = blue,
+        citecolor = blue,
+        urlcolor = teal,
+        filecolor = cyan,
+        pdfauthor = {\@sp@author},
+        pdftitle = {\@sp@title},
+        pdfkeywords = {spBook},
+        CJKbookmarks = true
+    }
+\else
+    \hypersetup{hidelinks}
+\fi
+
 \RequirePackage{xurl}
-\RequirePackage[backend=biber, style=\@sp@bibstyle]{biblatex}
-\AtEndPreamble{%
-    \IfEndWith{\@sp@ref}{.bib}{%
-        \addbibresource{\@sp@ref}
-    }{%
-        \addbibresource{\@sp@ref.bib}
-}}
+\RequirePackage[backend=biber, style=\@sp@bibstyle, hyperref=auto, backref=true]{biblatex}
 
 \DeclareSourcemap{
 	\maps[datatype=bibtex]{
@@ -245,6 +262,7 @@ coverpage = \@sp@coverpage^^J
 			\step[fieldset=url, null]
 			\step[fieldset=urldate, null]
 }}}
+
 
 
 \AtEndPreamble{
@@ -308,28 +326,11 @@ coverpage = \@sp@coverpage^^J
         title = {Statement Index}
     ]
 
-    \RequirePackage[
-        unicode, 
-        bookmarksnumbered, 
-        pdfpagelabels = true, 
-        breaklinks = true, 
-        hyperindex = true
-    ]{hyperref}
-    \if@sp@colorlinks
-        \hypersetup{%
-            colorlinks = true,
-            linkcolor = blue,
-            citecolor = green,
-            urlcolor = teal,
-            filecolor = cyan,
-            pdfauthor = {\@sp@author},
-            pdftitle = {\@sp@title},
-            pdfkeywords = {spBook},
-            CJKbookmarks = true
-        }
-    \else
-        \hypersetup{hidelinks}
-    \fi
+    \IfEndWith{\@sp@ref}{.bib}{%
+        \addbibresource{\@sp@ref}
+    }{%
+        \addbibresource{\@sp@ref.bib}
+    }
 }
 
 
