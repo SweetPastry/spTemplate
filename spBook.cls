@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2024/01/08 version: 1.00.02, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2024/01/08 version: 1.01.01, Author: Sweet Pastry]
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse}
 \SetupKeyvalOptions{%
@@ -52,12 +52,17 @@ coverpage = \@sp@coverpage^^J
         \chapter[#2]{#1}
     }
     \chaptermark{\@chaptermark}
+    \renewcommand{\@chapapp}{章节}
 }
 
 
 
 \LoadClass[10pt]{book}
 \setlength{\parskip}{5pt}
+\IfStrEq{\@sp@lang}{cn}{%
+    \RequirePackage{setspace}
+    \onehalfspacing
+}
 
 
 \PassOptionsToPackage{version=4}{mhchem}
@@ -348,6 +353,7 @@ coverpage = \@sp@coverpage^^J
 		\pagestyle{fancy}
 		\pagenumbering{roman}
         \maketitle
+        \IfStrEq{\@sp@lang}{cn}{\renewcommand{\contentsname}{目录}}{\relax}
         \tableofcontents
     }
 
@@ -398,6 +404,10 @@ coverpage = \@sp@coverpage^^J
     < < < < < < < < < <^^J
     }
     }}
+    \IfStrEq{\@sp@lang}{cn}{%
+        \renewcommand{\listfigurename}{插图索引}
+        \renewcommand{\listtablename}{表格索引}
+    }{\relax}
     \listoffigures
     \listoftables
     \printindex[statement]
