@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2024/01/08 version: 1.02.01, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2024/01/08 version: 1.00.02, Author: Sweet Pastry]
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse}
 \SetupKeyvalOptions{%
@@ -218,6 +218,19 @@ coverpage = \@sp@coverpage^^J
     \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}}
 
+\RequirePackage[xindy, splitindex]{imakeidx}
+\theoremlisttype{all}
+\makeindex
+\IfStrEq{\@sp@lang}{en}{\def\StateIndexName{Statement Index}}{\def\StateIndexName{陈述索引}}
+\makeindex[
+    columns = 2,
+    program = truexindy,
+    intoc = true,
+    options = -M texindy -I xelatex -C utf8,
+    name = statement, 
+    title = {\StateIndexName}
+]
+
 \RequirePackage[
     unicode, 
     bookmarksnumbered, 
@@ -313,18 +326,6 @@ coverpage = \@sp@coverpage^^J
     }{%
     \PackageError{spBook}{Language option \@sp@lang is not supported!}{Use en or cn.}
     }}
-
-    \RequirePackage[xindy, splitindex]{imakeidx}
-    \theoremlisttype{all}
-    \makeindex
-    \makeindex[
-        columns = 2,
-        program = truexindy,
-        intoc = true,
-        options = -M texindy -I xelatex -C utf8,
-        name = statement, 
-        title = {Statement Index}
-    ]
 
     \IfEndWith{\@sp@ref}{.bib}{%
         \addbibresource{\@sp@ref}
