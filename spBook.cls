@@ -392,6 +392,15 @@ coverpage = \@sp@coverpage^^J
 \AtEndDocument{
     \appendix
     \backmatter
+    \IfStrEq{\@sp@lang}{cn}{%
+    \renewcommand{\listfigurename}{插图索引}
+    \renewcommand{\listtablename}{表格索引}
+    }{\relax}
+    \addcontentsline{toc}{chapter}{\listfigurename}
+    \listoffigures
+    \addcontentsline{toc}{chapter}{\listtablename}
+    \listoftables
+    \printindex[statement]
     \if@sp@nocite\nocite{*}\fi
     \IfStrEq{\@sp@lang}{en}{%
         \printbibliography[heading=bibintoc]
@@ -406,13 +415,6 @@ coverpage = \@sp@coverpage^^J
     < < < < < < < < < <^^J
     }
     }}
-    \IfStrEq{\@sp@lang}{cn}{%
-        \renewcommand{\listfigurename}{插图索引}
-        \renewcommand{\listtablename}{表格索引}
-    }{\relax}
-    \listoffigures
-    \listoftables
-    \printindex[statement]
 }
 \makeatother
 \endinput
