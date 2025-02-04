@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spArticle}[2024/01/03 version: 1.00.02, Author: Sweet Pastry]
+\ProvidesClass{spArticle}[2024/01/03 version: 1.00.03, Author: Sweet Pastry]
 
 
-\RequirePackage{kvoptions, etoolbox, xstring}
+\RequirePackage{kvoptions, etoolbox, xstring, ifxetex, ifpdf}
 \SetupKeyvalOptions{%
     family = @sp,
     prefix = @sp@
@@ -71,21 +71,30 @@ bibstyle=\@sp@bibstyle^^J
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb}
+\RequirePackage{amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb}
+\IfStrEq{\@sp@lang}{cn}{%
+\ifxetex\RequirePackage{xeCJK}\fi
+\ifpdf\RequirePackage{ctex}\fi
+}{\relax}
 \newcommand{\song}{\CJKfamily{song}}
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{arrows,shapes}
 \usetikzlibrary{tikzmark}
 \usetikzlibrary{calc}
-\IfStrEq{\@sp@mathfont}{undefined}{\relax}{%
-\IfStrEq{\@sp@mathfont}{palatino}{\let\widering\relax\RequirePackage{newpxmath}}{%
-\IfStrEq{\@sp@mathfont}{fourier}{\let\widering\relax\RequirePackage{fourier}}{%
-\IfStrEq{\@sp@mathfont}{fouriernc}{\let\widering\relax\RequirePackage{fouriernc}}{%
-\IfStrEq{\@sp@mathfont}{times}{\let\widering\relax\RequirePackage{newtxmath}}{%
-\IfStrEq{\@sp@mathfont}{arev}{\RequirePackage{arev}}{%
-\IfStrEq{\@sp@mathfont}{mathdesign}{\RequirePackage{mathdesign}}{%
-\IfStrEq{\@sp@mathfont}{cmbridge}{\RequirePackage{cmbright}}{%
-\IfStrEq{\@sp@mathfont}{euler}{\let\widering\relax\RequirePackage{eulerpx}}{\relax}}}}}}}}}
+\usetikzlibrary{patterns}
+\IfStrEqCase{\@sp@mathfont}{%
+  {undefined}       {\relax}
+  {palatino}        {\let\mathscr\relax\let\widering\relax\RequirePackage{newpxmath}}
+  {fourier}         {\let\widering\relax\RequirePackage{fourier}}
+  {fouriernc}       {\let\widering\relax\RequirePackage{fouriernc}}
+  {times}           {\let\widering\relax\RequirePackage{newtxmath}}
+  {arev}            {\RequirePackage{arev}}
+  {design}          {\RequirePackage{mathdesign}}
+  {cmbridge}        {\RequirePackage{cmbright}}
+  {k}               {\RequirePackage{kmath}}
+  {ptmx}            {\RequirePackage{mathptmx}}
+  {euler}           {\let\widering\relax\RequirePackage{eulerpx}}
+}[\PackageError{spArticle}{Math font \@sp@mathfont not found!}{Use other.}]
 
 \RequirePackage{titlesec}
 \AtEndPreamble{%
