@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spArticle}[2024/01/03 version: 1.00.03, Author: Sweet Pastry]
+\ProvidesClass{spArticle}[2024/01/03 version: 1.00.04, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, ifxetex, ifpdf}
@@ -83,17 +83,18 @@ bibstyle=\@sp@bibstyle^^J
 \usetikzlibrary{calc}
 \usetikzlibrary{patterns}
 \IfStrEqCase{\@sp@mathfont}{%
-  {undefined}       {\relax}
-  {palatino}        {\let\mathscr\relax\let\widering\relax\RequirePackage{newpxmath}}
-  {fourier}         {\let\widering\relax\RequirePackage{fourier}}
-  {fouriernc}       {\let\widering\relax\RequirePackage{fouriernc}}
-  {times}           {\let\widering\relax\RequirePackage{newtxmath}}
-  {arev}            {\RequirePackage{arev}}
-  {design}          {\RequirePackage{mathdesign}}
-  {cmbridge}        {\RequirePackage{cmbright}}
-  {k}               {\RequirePackage{kmath}}
-  {ptmx}            {\RequirePackage{mathptmx}}
-  {euler}           {\let\widering\relax\RequirePackage{eulerpx}}
+    {undefined}       {\relax}
+    {palatino}        {\let\mathscr\relax\let\widering\relax\RequirePackage{newpxmath}}
+    {fourier}         {\let\widering\relax\RequirePackage{fourier}}
+    {fouriernc}       {\let\widering\relax\RequirePackage{fouriernc}}
+    {times}           {\let\widering\relax\RequirePackage{newtxmath}}
+    {arev}            {\RequirePackage{arev}}
+    {design}          {\RequirePackage{mathdesign}}
+    {cmbridge}        {\RequirePackage{cmbright}}
+    {k}               {\RequirePackage{kmath}}
+    {ptmx}            {\RequirePackage{mathptmx}}
+    {euler}           {\let\widering\relax\RequirePackage{eulerpx}}
+    {newtx}           {\let\widering\relax\RequirePackage{newtxmath, newtxtext}}
 }[\PackageError{spArticle}{Math font \@sp@mathfont not found!}{Use other.}]
 
 \RequirePackage{titlesec}
@@ -214,14 +215,14 @@ bibstyle=\@sp@bibstyle^^J
 \makeatletter
 \DeclareFieldFormat{url}{\url{#1}}
 \DeclareFieldFormat{doi}{%
-  \ifhyperref
+    \ifhyperref
     {\href{https://doi.org/#1}{DOI: \nolinkurl{#1}}}
     {DOI: \nolinkurl{#1}}}
 \makeatother
 
 
 \makeatletter
-\AtEndDocument{% 
+\AtEndDocument{%
     \if@sp@nocite\nocite{*}\fi
     \IfStrEq{\@sp@lang}{en}{%
         \printbibliography
