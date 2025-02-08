@@ -30,23 +30,6 @@
 \newcommand{\spAffiliation}[1]{\def\@sp@affiliation{#1}}
 
 
-\typeout{
-> > > > > > > > > >^^J
-check point1: inner val^^J
-colorlinks=[sp: bool type]^^J
-column=\@sp@column^^J
-lang=\@sp@lang^^J
-author=\@sp@author^^J
-affiliation=\@sp@affiliation^^J
-date=[sp: some internal date type]^^J
-title=\@sp@title^^J
-abstract=\@sp@abstract^^J
-ref=\@sp@ref^^J
-bibstyle=\@sp@bibstyle^^J
-< < < < < < < < < <^^J
-}
-
-
 \PassOptionsToPackage{a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm}{geometry}
 \IfStrEq{\@sp@lang}{en}{%
     \LoadClass[\@sp@column]{article}
@@ -54,13 +37,7 @@ bibstyle=\@sp@bibstyle^^J
 \IfStrEq{\@sp@lang}{cn}{%
     \LoadClass[\@sp@column]{ctexart}
 }{%
-    \typeout{
-        > > > > > > > > > >^^J
-        check point2: lang determined document type^^J
-        lang judge error!^^J
-        < < < < < < < < < <^^J
-    }
-    \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
+   \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}
 \IfStrEq{\@sp@column}{onecolumn}{\RequirePackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}}
 
@@ -112,13 +89,6 @@ bibstyle=\@sp@bibstyle^^J
     \IfStrEq{\@sp@lang}{cn}{%
         \def\@sp@bibstyle{gb7714-2015}
     }{%
-    \typeout{
-        > > > > > > > > > >^^J
-        check point3: bibstyle determin^^J
-        determin failed!^^J
-        lang=\@sp@lang^^J
-        < < < < < < < < < <^^J
-    }
     \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}}
 
@@ -194,14 +164,7 @@ bibstyle=\@sp@bibstyle^^J
                 \textbf{摘要}. \small{\song{\@sp@abstract}}\leavevmode
             \end{strip}
     }{%
-        \typeout{
-            > > > > > > > > > >^^J
-            check point4: bibstyle abstract generate^^J
-            generate failed!!^^J
-            lang=\@sp@lang^^J
-            < < < < < < < < < <^^J
-        }
-        \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
+       \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
     }}}{%
     \IfStrEq{\@sp@column}{onecolumn}{%
         \maketitle
@@ -229,13 +192,7 @@ bibstyle=\@sp@bibstyle^^J
     }{%
     \IfStrEq{\@sp@lang}{cn}{%
         \printbibliography[title=参考文献]
-    }{%
-    \typeout{
-    > > > > > > > > > >^^J
-    check point5: bibliography generate^^J
-    generate failed!^^J
-    < < < < < < < < < <^^J
-    }
+    }{% 
     \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}}
 \makeatother
