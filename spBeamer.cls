@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBeamer}[2024/01/05 version: 1.00.02, Author: Sweet Pastry]
+\ProvidesClass{spBeamer}[2024/01/05 version: 1.00.03, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring}

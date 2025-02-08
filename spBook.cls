@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2024/01/08 version: 1.00.02, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2024/01/08 version: 1.00.03, Author: Sweet Pastry]
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse}
 \SetupKeyvalOptions{%

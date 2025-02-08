@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spArticle}[2024/01/03 version: 1.00.04, Author: Sweet Pastry]
+\ProvidesClass{spArticle}[2024/01/03 version: 1.01.05, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, ifxetex, ifpdf}
