@@ -26,13 +26,6 @@
 \ProcessKeyvalOptions*
 \relax
 
-\typeout{%
-> > > > > > > > > >^^J
-check point1: key-value
-coverpage = \@sp@coverpage^^J
-< < < < < < < < < <^^J
-}
-
 
 % \newcommand{\spAbstract}[1]{\def\@sp@abstract{#1}}
 \newcommand{\spTitle}[1]{\def\@sp@title{#1}}
@@ -43,11 +36,9 @@ coverpage = \@sp@coverpage^^J
 \newcommand{\spCoverpage}[1]{\def@sp@coverpage{#1}}
 \NewDocumentCommand{\spChapter}{om}{%
     \IfNoValueTF{#1}{%
-        \typeout{spChapter did not received option. #1 and #2}
         \def\@chaptermark{#2}
         \chapter[#2]{#2}
     }{%
-        \typeout{spChapter command received option. #1 and #2}
         \def\@chaptermark{#2}
         \chapter[#2]{#1}
     }
@@ -98,7 +89,7 @@ coverpage = \@sp@coverpage^^J
     \newtheorem{definition-proposition}{Definition-Proposition}[section]
     \newtheorem{hypothesis}{Hypothesis}[section]
     \newtheorem{conjecture}{Conjecture}[section]
-    
+
     \theorembodyfont{\normalfont}
     \newtheorem{example}{Example}[section]
     \newtheorem{remark}{Remark}[section]
@@ -141,13 +132,11 @@ coverpage = \@sp@coverpage^^J
     \AtEndEnvironment{#1}{%
         \ifcsname #1name\endcsname
             \expandafter\ifx\csname #1name\endcsname\@empty
-                \typeout{SP: #1name exists but is empty.}
             \else
-                \typeout{SP: \csname #1name\endcsname writed.}
                 \index[statement]{\csname #1name\endcsname}
             \fi
         \else
-            \typeout{SP: #1name does not exist.}
+            \relax
         \fi
 }}
 \forcsvlist{\defineIndexedEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}
@@ -168,7 +157,7 @@ coverpage = \@sp@coverpage^^J
     \definecolor{tudelft-oranje}{RGB}{237,104,66}
     \definecolor{tudelft-geel}{RGB}{255,184,28}
     \definecolor{tudelft-donkergrijs}{RGB}{92,92,92}
-    
+
     \newcommand{\tcbsetColor}[2]{%
         \tcolorboxenvironment{#2}{
                 enhanced,
@@ -208,13 +197,6 @@ coverpage = \@sp@coverpage^^J
     \IfStrEq{\@sp@lang}{cn}{%
         \def\@sp@bibstyle{gb7714-2015}
     }{%
-    \typeout{
-        > > > > > > > > > >^^J
-        check point3: bibstyle determin^^J
-        determin failed!^^J
-        lang=\@sp@lang^^J
-        < < < < < < < < < <^^J
-    }
     \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}}
 
@@ -227,15 +209,15 @@ coverpage = \@sp@coverpage^^J
     program = truexindy,
     intoc = true,
     options = -M texindy -I xelatex -C utf8,
-    name = statement, 
+    name = statement,
     title = {\StateIndexName}
 ]
 
 \RequirePackage[
-    unicode, 
-    bookmarksnumbered, 
-    pdfpagelabels = true, 
-    breaklinks = true, 
+    unicode,
+    bookmarksnumbered,
+    pdfpagelabels = true,
+    breaklinks = true,
     hyperindex = true
 ]{hyperref}
 \if@sp@colorlinks
@@ -337,7 +319,6 @@ coverpage = \@sp@coverpage^^J
 
 \g@addto@macro\frontmatter{
     \ifdefempty{\@sp@coverpage}{\relax}{%
-        \typeout{Here is spBook compile messenge: the coverpage macro is not empty with definition \@sp@coverpage.}
         \pagestyle{empty}
         \renewcommand{\thepage}{C\arabic{page}}
 
@@ -408,12 +389,7 @@ coverpage = \@sp@coverpage^^J
     \IfStrEq{\@sp@lang}{cn}{%
         \printbibliography[heading=bibintoc, title=参考文献]
     }{%
-    \typeout{
-    > > > > > > > > > >^^J
-    check point5: bibliography generate^^J
-    generate failed!^^J
-    < < < < < < < < < <^^J
-    }
+    \relax
     }}
 }
 \makeatother

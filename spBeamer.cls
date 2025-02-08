@@ -39,25 +39,8 @@
 \newcommand{\spDate}[1]{\def\@sp@date{#1}}
 
 
-\typeout{
-> > > > > > > > > >^^J
-check point1: inner val^^J
-colorlinks=[sp: bool type]^^J
-author=\@sp@author^^J
-aythorinshort=\@sp@authorinshort^^J
-affiliation=\@sp@affiliation^^J
-affiliationinshort=\@sp@affiliationinshort^^J
-date=[sp: some internal date type]^^J
-title=\@sp@title^^J
-substitle=\@sp@subtitle^^J
-ref=\@sp@ref^^J
-bibstyle=\@sp@bibstyle^^J
-< < < < < < < < < <^^J
-}
-
-
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{amsmath, amssymb, amsthm, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb, refcount, multicol, hyperref}
+\RequirePackage{amsmath, amssymb, amsthm, amsfonts, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb, refcount, multicol, hyperref}
 \newcommand{\song}{\CJKfamily{song}}
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{arrows,shapes}
@@ -81,13 +64,6 @@ bibstyle=\@sp@bibstyle^^J
     \IfStrEq{\@sp@lang}{cn}{%
         \def\@sp@bibstyle{gb7714-2015}
     }{%
-    \typeout{
-        > > > > > > > > > >^^J
-        check point3: bibstyle determin^^J
-        determin failed!^^J
-        lang=\@sp@lang^^J
-        < < < < < < < < < <^^J
-    }
     \PackageError{spBeamer}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}}
 
@@ -300,14 +276,14 @@ bibstyle=\@sp@bibstyle^^J
   \ifbibsection
     \relax
   \else
-      \frame{\sectionpage} 
+      \frame{\sectionpage}
   \fi
 }
 \AtBeginSubsection[]{
   \ifbibsection
     \relax
   \else
-      \frame{\subsectionpage} 
+      \frame{\subsectionpage}
   \fi
 }
 \AtBeginEnvironment{bibliography}{
