@@ -170,7 +170,8 @@
         \maketitle
         \begin{abstract}
             \@sp@abstract
-        \end{abstract}\par
+        \end{abstract}\par}{%
+            \relax
 }}}
 \makeatother
 
@@ -192,7 +193,7 @@
     }{%
     \IfStrEq{\@sp@lang}{cn}{%
         \printbibliography[title=参考文献]
-    }{% 
+    }{%
     \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}}
 \makeatother
