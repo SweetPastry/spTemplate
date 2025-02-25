@@ -48,7 +48,7 @@
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb}
+\RequirePackage{mathtools, amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb}
 \IfStrEq{\@sp@lang}{cn}{%
 \ifxetex\RequirePackage{xeCJK}\fi
 \ifpdf\RequirePackage{ctex}\fi
