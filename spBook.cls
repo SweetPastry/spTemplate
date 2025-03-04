@@ -59,7 +59,11 @@
 \PassOptionsToPackage{version=4}{mhchem}
 \PassOptionsToPackage{table}{xcolor}
 \PassOptionsToPackage{most}{tcolorbox}
-\RequirePackage{amsmath, amssymb, amsfonts, ntheorem, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb, tcolorbox}
+\RequirePackage{amsmath, amssymb, amsfonts, ntheorem, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, tcolorbox}
+\IfStrEq{\@sp@lang}{cn}{%
+\ifxetex\RequirePackage{xeCJK}\fi
+\ifpdf\RequirePackage{ctex}\fi
+}{\relax}
 \newcommand{\song}{\CJKfamily{song}}
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{arrows,shapes}

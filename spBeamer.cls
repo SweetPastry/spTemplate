@@ -40,7 +40,11 @@
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{amsmath, amssymb, amsthm, amsfonts, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, xeCJK, fancyvrb, refcount, multicol, hyperref}
+\RequirePackage{amsmath, amssymb, amsthm, amsfonts, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, refcount, multicol, hyperref}
+\IfStrEq{\@sp@lang}{cn}{%
+\ifxetex\RequirePackage{xeCJK}\fi
+\ifpdf\RequirePackage{ctex}\fi
+}{\relax}
 \newcommand{\song}{\CJKfamily{song}}
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{arrows,shapes}

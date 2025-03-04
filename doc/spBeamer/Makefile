@@ -1,4 +1,4 @@
-XE_COMPILE = xelatex -interaction=nonstopmode -shell-escape 
+XE_COMPILE = pdflatex -interaction=nonstopmode -shell-escape
 
 default:
 	make e0
