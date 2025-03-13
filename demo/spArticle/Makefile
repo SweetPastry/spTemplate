@@ -4,7 +4,7 @@ CN_ONE = cnOnecol
 CN_TWO = cnTwocol
 TEX_FILE = enOnecol, enTwocol, cnOnecol, cnTwocol
 
-XE_COMPILE = xelatex -interaction=nonstopmode -shell-escape 
+XE_COMPILE = xelatex -interaction=nonstopmode -shell-escape
 
 e1:
 	$(XE_COMPILE) $(EN_ONE)

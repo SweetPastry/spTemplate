@@ -129,8 +129,8 @@
     \if@sp@colorlinks
         \hypersetup{%
             colorlinks = true,
-            linkcolor = blue,
-            citecolor = cyan,
+            linkcolor = cyan,
+            citecolor = blue,
             urlcolor = teal,
             filecolor = magenta,
         }
