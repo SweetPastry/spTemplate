@@ -130,9 +130,9 @@
         \hypersetup{%
             colorlinks = true,
             linkcolor = blue,
-            citecolor = green,
+            citecolor = cyan,
             urlcolor = teal,
-            filecolor = cyan,
+            filecolor = magenta,
         }
     \else
         \hypersetup{hidelinks}
