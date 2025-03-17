@@ -232,7 +232,7 @@
 \if@sp@colorlinks
     \hypersetup{%
         colorlinks = true,
-        linkcolor = cyan,
+        linkcolor = blue,
         citecolor = blue,
         urlcolor = teal,
         filecolor = magenta,
