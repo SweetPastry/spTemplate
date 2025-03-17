@@ -1,4 +1,4 @@
-XE_COMPILE = xelatex -interaction=nonstopmode -shell-escape 
+XE_COMPILE = xelatex -interaction=nonstopmode -shell-escape
 
 default:
 	$(XE_COMPILE) doc

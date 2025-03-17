@@ -59,21 +59,30 @@
         \begin{definition}[Named Definition]
             Here is definition environment. With the name of this definition, it will be automatically written into index appendix.
         \end{definition}
-        % \begin{definition}
-        %     This definition has no name so it will not be added into index.
-        % \end{definition}
-        % \begin{lemma}[Schur Lemma]
-        %     Lemma demo. Lemma demo. Lemma demo. Lemma demo. Lemma demo.
-        % \end{lemma}
-        % \begin{theorem}[Schur Theorem]
-        %     Theorem demo. Theorem demo. Theorem demo. Theorem demo.
-        % \end{theorem}
-        % \begin{corollary}[Just a Corollary]
-        %     This is a Corollary.
-        % \end{corollary}
-        % \begin{example}[Example Try Demo]
-        %     This is Example Try Demo.
-        % \end{example}
-        % \begin{proof}[Prooffffff]
-        %     Proofffff!!!!
-        % \end{proof}
+        \lipsum[1-3]
+        \begin{theorem}[Cauchy's Integral Formula]
+            Let $f(z)$ be holomorphic in a simply connected domain $\Omega$ and let $C$ be a simple closed contour within $\Omega$, enclosing a point $a \in \Omega$. Then, for all $z$ inside $C$,
+            \[
+            f(a) = \frac{1}{2\pi i} \oint_C \frac{f(z)}{z-a} \, dz.
+            \]
+            This is Cauchy intergral Formula.
+        \end{theorem}
+        \begin{proof}
+            Since $f(z)$ is holomorphic in $\Omega$, we can define the function
+            \[
+            g(z) = \frac{f(z)}{z-a}.
+            \]
+            Because $f(z)$ is analytic in $\Omega$ and $C$ is a simple closed contour enclosing $a$, we can apply Cauchy's Residue Theorem. The function $g(z)$ has a simple pole at $z=a$ with residue
+            \[
+            \operatorname{Res}(g, a) = f(a).
+            \]
+            By the Residue Theorem, we get:
+            \[
+            \oint_C g(z) \, dz = 2\pi i \operatorname{Res}(g, a) = 2\pi i f(a).
+            \]
+            Therefore, we conclude that:
+            \[
+            f(a) = \frac{1}{2\pi i} \oint_C \frac{f(z)}{z-a} \, dz.
+            \]
+        \end{proof}
+        \lipsum[12-16]

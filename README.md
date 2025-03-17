@@ -4,7 +4,7 @@
 This repository provides a collection of LaTeX class templates designed to enhance the clarity and conciseness of the main .tex files. It allows users to focus on the content of their work, rather than the intricacies of LaTeX code.
 
 > [!Note]
-> **Note**: This template is designed to provide an easy-to-use LaTeX writing framework for undergraduates who are new to LaTeX but need it for their writing tasks. 
+> **Note**: This template is designed to provide an easy-to-use LaTeX writing framework for undergraduates who are new to LaTeX but need it for their writing tasks.
 
 > [!Warning]
 > **Warning**: ⚠️ **Not** for Journal Submissions - This is not intended as a formal academic writing template for specific journals or conferences.
@@ -42,14 +42,14 @@ spBeamer, style2:
 ![spBeamerDomo1](pic/spBeamerDemo1.png)
 ![spBeamerDomo2](pic/spBeamerDemo2.png)
 ![spBeamerDomo3](pic/spBeamerDemo3.png)
-![spBeamerDomo4](pic/spBeamerDemo4.png)
 ![spBeamerDomo5](pic/spBeamerDemo5.png)
 
 spBook:
 ![spBookDemo1](pic/spBookDemo1.png)
 ![spBookDemo2](pic/spBookDemo2.png)
 ![spBookDemo3](pic/spBookDemo3.png)
-![spBookDemo5](pic/spBookDemo4.png)
+![spBookDemo4](pic/spBookDemo4.png)
+![spBookDemo5](pic/spBookDemo5.png)
 
 
 # How to Use
@@ -66,13 +66,13 @@ Refer to the instruction document in the doc folder for a quick guide on how to 
 
 ### Compilation
 
-To compile your document, use **`xelatex`** and **`biber`** in the following order:
+To compile your document, use **`xelatex`** with option **-shell-escape** (for `makeindex`) and **`biber`** in the following order:
 
 ```sh
-xelatex <texfile>
+xelatex -shell-escape <texfile>
 biber <texfile>
-xelatex <texfile>
-xelatex <texfile>
+xelatex -shell-escape <texfile>
+xelatex -shell-escape <texfile>
 ```
 
 This sequence ensures proper handling of references and document structure.
