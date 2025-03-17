@@ -339,9 +339,12 @@
         }{%
         \IfEndWith{\@sp@coverpage}{.tex}{%
             \input{\@sp@coverpage}
-        }{
+        }{%
+        \IfFileExists{\@sp@coverpage.tex}{%
+            \input{\@sp@coverpage.tex}
+        }{%
         \PackageError{spBook}{Coverpage file format error!}{Use .pdf or .tex.}
-        }}}
+        }}}}
 		\pagestyle{fancy}
 		\pagenumbering{roman}
         \maketitle

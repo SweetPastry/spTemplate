@@ -307,5 +307,5 @@ TSWLatexianTemp*
 #*Notes.bib
 
 # ignire .idea and .vscode, configuration files
-.idea
-.vscode
+.idea/
+.vscode/
