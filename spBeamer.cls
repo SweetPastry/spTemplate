@@ -32,10 +32,8 @@
 
 \newcommand{\spTitle}[1]{\def\@sp@title{#1}}
 \newcommand{\spSubtitle}[1]{\def\@sp@subtitle{#1}}
-\newcommand{\spAuthor}[1]{\def\@sp@author{#1}}
-\newcommand{\spAuthorInShort}[1]{\def\@sp@authorinshort{#1}}
-\newcommand{\spAffiliation}[1]{\def\@sp@affiliation{#1}}
-\newcommand{\spAffiliationInShort}[1]{\def\@sp@affiliationinshort{#1}}
+\newcommand{\spAuthor}[2][\@sp@author]{\def\@sp@author{#2}\def\@sp@authorinshort{#1}}
+\newcommand{\spAffiliation}[2][\@sp@affiliation]{\def\@sp@affiliation{#2}\def\@sp@affiliationinshort{#1}}
 \newcommand{\spDate}[1]{\def\@sp@date{#1}}
 
 
