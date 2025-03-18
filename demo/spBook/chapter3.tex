@@ -1,31 +1,30 @@
 \spChapter[正式写作示例\\Formal writing demo]{正式写作示例, Formal writing demo}
     \section{Math Writing, 数理类写作}
         \lipsum[1-2]
-        \begin{definition}[DinLi@Dinli!DinLi]
-            定义示例 english.
-            $$
-            \int_a^bf\left(x\right)=F\left(b\right)-F\left(a\right).
-            $$
+        \begin{definition}
+            If \(a\) and \(b\) are even integers, then their sum \(a+b\) is even.
         \end{definition}
         \lipsum[3-4]
-        \begin{example}[Example Demo, 举例环境]
-            Here is example. 这里是举例环境.
-            $$
-            \int_a^bf\left(x\right)=F\left(b\right)-F\left(a\right).
-            $$
-        \end{example}
-        \lipsum[5-6]
-        \begin{proof}[Proof Demo, 证明环境]
-            Here is proof! 这里是证明环境!
-            $$
-            \int_a^bf\left(x\right)=F\left(b\right)-F\left(a\right).
-            $$
-        \end{proof}
-        \lipsum[7-10]
-        \begin{theorem}[]
-            \lipsum[1]
-            $$
-            f\left(a\right) = \oint_{\partial D}{\frac{f\left(z\right)}{z-a}\mathrm{d}z}.
-            $$
-            \lipsum[2]
-        \end{theorem}
+        \begin{lemma}[Some lemma]
+            Since \(a\) and \(b\) are even, there exist integers \(k\) and \(m\) such that 
+            \[
+            a = 2k \quad \text{and} \quad b = 2m.
+            \]
+            Then,
+            \[
+            a+b = 2k + 2m = 2(k+m).
+            \]
+            Because \(k+m\) is an integer, \(a+b\) is divisible by 2 and therefore even.
+        \end{lemma}
+        \lipsum[5]
+        \begin{corollary}[Corollary][Newton Corollary]
+            If \(a\) and \(b\) are odd integers, then their product \(ab\) is odd.
+        \end{corollary}
+        \lipsum[6-7]
+        \begin{corollary}[theorem][Newton@ImNewton!YouAreNewton]
+            \lipsum[8]
+        \end{corollary}
+        \lipsum[10-11]
+        \begin{proposition}[中文命题][PaiXv@中文主显示(排序用的键是P开头的)!中文子显示]
+            壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙。
+        \end{proposition}

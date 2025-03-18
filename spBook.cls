@@ -85,7 +85,6 @@
 }[\PackageError{spArticle}{Math font \@sp@mathfont not found!}{Use other.}]
 
 
-
 \IfStrEq{\@sp@lang}{en}{%
     \theoremheaderfont{\bfseries\sffamily}
     \theorembodyfont{\normalfont}
@@ -123,6 +122,7 @@
     \newtheorem{hypothesis}{假设}[section]
     \newtheorem{conjecture}{猜想}[section]
 
+    \theorembodyfont{\normalfont}
     \newtheorem{example}{例}[section]
     \newtheorem{remark}{注记}[section]
     \newtheorem{convention}{约定}[section]
@@ -137,12 +137,31 @@
 }{%
 \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}
+\newcommand{\addOneOptionToEnvironment}[1]{%
+    \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+    \RenewDocumentEnvironment{#1}{O{} O{}}{%
+        \typeout{22222, old#1, #1}
+        \IfStrEq{##1}{}{%
+            \begin{old#1}
+        }{%
+            \begin{old#1}[##1]
+            \IfStrEq{##2}{}{%
+                \expandafter\def\csname #1index\endcsname{##1}
+            }{%
+                \expandafter\def\csname #1index\endcsname{##2}
+            }
+        }
+    }{%
+            \end{old#1}
+    }
+}
+\forcsvlist{\addOneOptionToEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}
 \newcommand{\defineIndexedEnvironment}[1]{%
     \AtEndEnvironment{#1}{%
         \ifcsname #1name\endcsname
             \expandafter\ifx\csname #1name\endcsname\@empty
             \else
-                \index[statement]{\csname #1name\endcsname}
+                \index[statement]{\csname #1index\endcsname}
             \fi
         \else
             \relax
