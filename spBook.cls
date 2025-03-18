@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2024/01/08 version: 1.00.03, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2025/03/18 version: 1.03.01, Author: Sweet Pastry]
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse}
 \SetupKeyvalOptions{%
@@ -88,7 +88,7 @@
 
 \IfStrEq{\@sp@lang}{en}{%
     \theoremheaderfont{\bfseries\sffamily}
-    \theorembodyfont{\slshape}
+    \theorembodyfont{\normalfont}
     \newtheorem{theorem}{Theorem}[section]
     \newtheorem{corollary}{Corollary}[section]
     \newtheorem{lemma}{Lemma}[section]
@@ -105,13 +105,14 @@
     \newtheorem{convention}{Convention}[section]
     \newtheorem{exercise}{Exercise}[section]
 
-    \theorembodyfont{}
+    \theorembodyfont{\normalfont}
     \theoremstyle{nonumberplain}
     \theoremseparator{\enspace}
     \theoremsymbol{\openbox}
     \newtheorem{proof}{Proof}
 }{%
 \IfStrEq{\@sp@lang}{cn}{%
+    \theorembodyfont{\song}
     \newtheorem{theorem}{定理}[section]
     \newtheorem{corollary}{推论}[section]
     \newtheorem{lemma}{引理}[section]
@@ -122,13 +123,12 @@
     \newtheorem{hypothesis}{假设}[section]
     \newtheorem{conjecture}{猜想}[section]
 
-    \theorembodyfont{\song}
     \newtheorem{example}{例}[section]
     \newtheorem{remark}{注记}[section]
     \newtheorem{convention}{约定}[section]
     \newtheorem{exercise}{练习}[section]
 
-    \theorembodyfont{}
+    \theorembodyfont{\normalfont}
     \theoremstyle{nonumberplain}
     \theoremheaderfont{\sffamily\bfseries\CJKfamily{pffont}}
     \theoremseparator{\enspace}
@@ -149,6 +149,7 @@
         \fi
 }}
 \forcsvlist{\defineIndexedEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}
+
 
 \if@sp@colorbox
     \definecolor{tudelft-groen}{RGB}{108,194,74}
@@ -183,6 +184,7 @@
                 description font = \mdseries,
                 separator sign none,
                 segmentation style={solid, #1},
+                % fontupper=\fontfamily{ppl}\selectfont
     }}
     % \makeatletter
     \tcbsetColor{tudelft-groen}{definition}
@@ -229,6 +231,12 @@
     breaklinks = true,
     hyperindex = true
 ]{hyperref}
+\IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
+\hypersetup{%
+    pdfauthor = {\@sp@author},
+    pdftitle = {\@sp@title},
+    pdfkeywords = {spBook},
+}
 \if@sp@colorlinks
     \hypersetup{%
         colorlinks = true,
@@ -236,10 +244,6 @@
         citecolor = blue,
         urlcolor = teal,
         filecolor = magenta,
-        pdfauthor = {\@sp@author},
-        pdftitle = {\@sp@title},
-        pdfkeywords = {spBook},
-        CJKbookmarks = true
     }
 \else
     \hypersetup{hidelinks}

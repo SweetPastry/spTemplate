@@ -104,7 +104,7 @@
 		\map{%
 			\step[fieldsource=doi, final]
 			\step[fieldset=url, null]
-			\step[fieldset=urldate, null];
+			\step[fieldset=urldate, null]
 }}}
 
 
@@ -228,6 +228,12 @@
 
 \makeatletter
 \AtEndPreamble{%
+  \IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
+  \hypersetup{%
+      pdfauthor = {\@sp@author},
+      pdftitle = {\@sp@title},
+      pdfkeywords = {spArticle},
+  }
   \title{\bfseries\@sp@title}
   \subtitle{\@sp@subtitle}
   \author[\@sp@authorinshort]{\bfseries\@sp@author}

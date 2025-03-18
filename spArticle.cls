@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spArticle}[2024/01/03 version: 1.01.05, Author: Sweet Pastry]
+\ProvidesClass{spArticle}[2025/03/018 version: 1.03.01, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, ifxetex, ifpdf}
@@ -126,6 +126,12 @@
 
 \RequirePackage[pdfpagelabels=true, breaklinks=true]{hyperref}
 \AtEndPreamble{%
+    \IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
+    \hypersetup{%
+        pdfauthor = {\@sp@author},
+        pdftitle = {\@sp@title},
+        pdfkeywords = {spArticle},
+    }
     \if@sp@colorlinks
         \hypersetup{%
             colorlinks = true,
@@ -137,8 +143,7 @@
     \else
         \hypersetup{hidelinks}
     \fi
-}
-\AtEndPreamble{
+
     \title{\bf{\@sp@title}}
     \author{\@sp@author\quad\textit{\quad\@sp@affiliation}}
     \date{\@sp@date}

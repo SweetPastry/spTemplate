@@ -66,7 +66,7 @@ Refer to the instruction document in the doc folder for a quick guide on how to 
 
 ### Compilation
 
-To compile your document, use **`xelatex`** with option **-shell-escape** (for `makeindex`) and **`biber`** in the following order:
+To compile your document, use **`xelatex`** with option `-shell-escape` (for `makeindex`) and **`biber`** in the following order:
 
 ```sh
 xelatex -shell-escape <texfile>
