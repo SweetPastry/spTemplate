@@ -5,6 +5,7 @@ default:
 	make e1
 	make e2
 	make e3
+	make e4
 
 e0:
 	$(XE_COMPILE) en0
@@ -42,6 +43,22 @@ e3:
 	$(XE_COMPILE) en3
 	$(XE_COMPILE) en3
 	latexmk -c en3
+	@rm -f *.aux *.log *.idx *.ind *.ilg *.thm *.toc *.blg *.bbl *.bcf *.out *.nav *.vrb *.snm
+	@rm -f *.fls *.fdb_latexmk *.run.xml *.synctex.gz *.xdv *~ *.lof *.lot
+	@rm -f .metadonnees*
+
+e4:
+	$(XE_COMPILE) en4
+	biber en4
+	$(XE_COMPILE) en4
+	$(XE_COMPILE) en4
+	latexmk -c en4
+	@rm -f *.aux *.log *.idx *.ind *.ilg *.thm *.toc *.blg *.bbl *.bcf *.out *.nav *.vrb *.snm
+	@rm -f *.fls *.fdb_latexmk *.run.xml *.synctex.gz *.xdv *~ *.lof *.lot
+	@rm -f .metadonnees*
+
+c:
+	latexmk -c en0 en1 en2 en3 en4
 	@rm -f *.aux *.log *.idx *.ind *.ilg *.thm *.toc *.blg *.bbl *.bcf *.out *.nav *.vrb *.snm
 	@rm -f *.fls *.fdb_latexmk *.run.xml *.synctex.gz *.xdv *~ *.lof *.lot
 	@rm -f .metadonnees*

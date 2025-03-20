@@ -119,7 +119,7 @@
 \useinnertheme{rectangles}
 \usefonttheme{professionalfonts}
 
-% Black and Red
+% BrowBlack and OrangeRed
 \definecolor{orange}{HTML}{f28165}
 \definecolor{deepgray}{HTML}{303030}
 \definecolor{yellow}{HTML}{f0be52}
@@ -131,17 +131,24 @@
 \definecolor{Gray}{HTML}{BEBEBE}
 \definecolor{DarkGray}{HTML}{4D4D4D}
 
-% Deep Gray Blue
+% LightGrayWhite and TealBlue
 \definecolor{SlateGray}{HTML}{3E4E56}
 \definecolor{ReflectiveWhite}{HTML}{F7F7F7}
 \definecolor{TealBlue}{HTML}{2B6777}
 \definecolor{SeafoamGreen}{HTML}{588A8A}
 
-% Deep Green
+% White and Deep Green
 \definecolor{OliveGreen}{HTML}{556B2F}
 \definecolor{ReflectiveWhite}{HTML}{F7F7F7}
 \definecolor{FruitOrange}{HTML}{E85D04}
 \definecolor{LightGreen}{HTML}{82C91E}
+
+% SoleGray and Gold
+\definecolor{SoleGray}{HTML}{494949}
+\definecolor{EmphaGold}{HTML}{E6B878}
+\definecolor{LightGold}{HTML}{FEFCCD}
+\definecolor{Bronze}{HTML}{B87333}
+
 
 \makeatletter
 \ifcase\@sp@style
@@ -168,6 +175,13 @@
   \colorlet{highlight}{FruitOrange}
   \colorlet{accent}{LightGreen}
   \setbeamercolor{normal text}{bg=secondary,fg=black}
+\or
+  \colorlet{primary}{EmphaGold}
+  \colorlet{secondary}{SoleGray}
+  \colorlet{highlight}{LightGold}
+  \colorlet{accent}{Bronze}
+  \setbeamercolor{normal text}{bg=secondary,fg=white}
+  % \setbeamercolor{math text}{bg=secondary,fg=LightGold}
 \else
   \PackageError{spBeamer}{Style index number exceed!}{Choose a smaller int number, 0 default.}
 \fi
@@ -265,12 +279,6 @@
       \IfStrEq{\@sp@lang}{cn}{%
           \printbibliography[title=参考文献]
       }{%
-      \typeout{
-      > > > > > > > > > >^^J
-      check point5: bibliography generate^^J
-      generate failed!^^J
-      < < < < < < < < < <^^J
-      }
       \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
      }}
     \end{frame}
