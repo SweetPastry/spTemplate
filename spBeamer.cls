@@ -241,11 +241,11 @@
 \makeatletter
 \AtEndPreamble{%
   \IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
-  \hypersetup{%
+  \ifxetex\hypersetup{%
       pdfauthor = {\@sp@author},
       pdftitle = {\@sp@title},
       pdfkeywords = {spArticle},
-  }
+  }\fi
   \title{\bfseries\@sp@title}
   \subtitle{\@sp@subtitle}
   \author[\@sp@authorinshort]{\bfseries\@sp@author}

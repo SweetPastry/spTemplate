@@ -251,11 +251,11 @@
     hyperindex = true
 ]{hyperref}
 \IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
-\hypersetup{%
+\ifxetex\hypersetup{%
     pdfauthor = {\@sp@author},
     pdftitle = {\@sp@title},
     pdfkeywords = {spBook},
-}
+}\fi
 \if@sp@colorlinks
     \hypersetup{%
         colorlinks = true,
