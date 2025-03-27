@@ -38,6 +38,7 @@
 
 
 \PassOptionsToPackage{version=4}{mhchem}
+\PassOptionsToPackage{pdfpagelabels=true, breaklinks=true, unicode=true}{hyperref}
 \RequirePackage{amsmath, amssymb, amsthm, amsfonts, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, refcount, multicol, hyperref}
 \IfStrEq{\@sp@lang}{cn}{%
 \ifxetex\RequirePackage{xeCJK}\fi
@@ -241,11 +242,11 @@
 \makeatletter
 \AtEndPreamble{%
   \IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
-  \ifxetex\hypersetup{%
+  \hypersetup{%
       pdfauthor = {\@sp@author},
       pdftitle = {\@sp@title},
       pdfkeywords = {spArticle},
-  }\fi
+  }
   \title{\bfseries\@sp@title}
   \subtitle{\@sp@subtitle}
   \author[\@sp@authorinshort]{\bfseries\@sp@author}

@@ -124,14 +124,14 @@
 }}}
 
 
-\RequirePackage[pdfpagelabels=true, breaklinks=true]{hyperref}
+\RequirePackage[pdfpagelabels=true, breaklinks=true, unicode=true]{hyperref}
 \AtEndPreamble{%
     \IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
-    \ifxetex\hypersetup{%
+    \hypersetup{%
         pdfauthor = {\@sp@author},
         pdftitle = {\@sp@title},
         pdfkeywords = {spArticle},
-    }\fi
+    }
     \if@sp@colorlinks
         \hypersetup{%
             colorlinks = true,
