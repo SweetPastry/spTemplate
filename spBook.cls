@@ -244,18 +244,18 @@
 ]
 
 \RequirePackage[
-    unicode,
+    unicode=true,
     bookmarksnumbered,
     pdfpagelabels = true,
     breaklinks = true,
     hyperindex = true
 ]{hyperref}
 \IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
-\ifxetex\hypersetup{%
+\hypersetup{%
     pdfauthor = {\@sp@author},
     pdftitle = {\@sp@title},
     pdfkeywords = {spBook},
-}\fi
+}
 \if@sp@colorlinks
     \hypersetup{%
         colorlinks = true,
