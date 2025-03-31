@@ -65,10 +65,7 @@
 \ifpdf\RequirePackage{ctex}\fi
 }{\relax}
 \newcommand{\song}{\CJKfamily{song}}
-\usetikzlibrary{backgrounds}
-\usetikzlibrary{arrows,shapes}
-\usetikzlibrary{tikzmark}
-\usetikzlibrary{calc}
+\usetikzlibrary{backgrounds, tikzmark, decorations.markings, arrows, arrows.meta, shapes, calc, patterns, bending}
 \IfStrEqCase{\@sp@mathfont}{%
     {undefined}       {\relax}
     {palatino}        {\let\mathscr\relax\let\widering\relax\RequirePackage{newpxmath}}
