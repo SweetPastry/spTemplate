@@ -43,7 +43,7 @@
         \chapter[#2]{#1}
     }
     \chaptermark{\@chaptermark}
-    \renewcommand{\@chapapp}{章节}
+    \IfStrEq{\@sp@lang}{cn}{\renewcommand{\@chapapp}{章节}}
 }
 
 

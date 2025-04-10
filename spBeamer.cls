@@ -256,6 +256,7 @@
 \makeatletter
 \AtBeginDocument{%
   \frame{\titlepage}
+
   \begin{frame}{\IfStrEq{en}{\@sp@lang}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{\PackageError{spBeamer}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}\typeout{AtBeginDocumentErrorSP}}}}
       % \tableofcontents
       \begin{multicols}{2}
