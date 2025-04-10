@@ -306,6 +306,6 @@ TSWLatexianTemp*
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
 
-# ignire .idea and .vscode, configuration files
+# ignore .idea and .vscode, configuration files
 .idea/
 .vscode/
