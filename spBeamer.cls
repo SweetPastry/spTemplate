@@ -45,10 +45,7 @@
 \ifpdf\RequirePackage{ctex}\fi
 }{\relax}
 \newcommand{\song}{\CJKfamily{song}}
-\usetikzlibrary{backgrounds}
-\usetikzlibrary{arrows,shapes}
-\usetikzlibrary{tikzmark}
-\usetikzlibrary{calc}
+\usetikzlibrary{backgrounds, tikzmark, decorations.markings, arrows, arrows.meta, shapes, calc, patterns, bending}
 \IfStrEqCase{\@sp@mathfont}{%
     {undefined}       {\relax}
     {palatino}        {\let\mathscr\relax\let\widering\relax\RequirePackage{newpxmath}}
@@ -270,9 +267,11 @@
 
 
 \makeatletter
+\patchcmd{\beamer@continueautobreak}{\frametitle}{\beamer@gobbleoptional}{}{\errmessage{failed to patch}}
+\patchcmd{\beamer@continueautobreak}{\framesubtitle}{\beamer@gobbleoptional}{}{\errmessage{failed to patch}}
 \AtEndDocument{
-  % \section*{References}
-    \begin{frame}[allowframebreaks, plain]{\IfStrEq{en}{\@sp@lang}{References}{\IfStrEq{\@sp@lang}{cn}{参考文献}{\PackageError{spBeamer}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}\typeout{AtBeginDocumentErrorSP}}}}
+    \begin{frame}[allowframebreaks, plain]
+      \frametitle{\ifnum\insertcontinuationcount=1 References\else\relax\fi}
       \if@sp@nocite\nocite{*}\fi
       \IfStrEq{\@sp@lang}{en}{%
           \printbibliography
