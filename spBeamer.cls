@@ -253,18 +253,14 @@
 \makeatother
 
 
-\makeatletter
-\AtBeginDocument{%
+\AddToHook{begindocument/end}{%
   \frame{\titlepage}
-
-  \begin{frame}{\IfStrEq{en}{\@sp@lang}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{\PackageError{spBeamer}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}\typeout{AtBeginDocumentErrorSP}}}}
-      % \tableofcontents
-      \begin{multicols}{2}
-        \tableofcontents
-      \end{multicols}
+  \begin{frame}{\IfStrEq{\@sp@lang}{en}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{Summary}}}
+    \begin{multicols}{2}
+      \tableofcontents
+    \end{multicols}
   \end{frame}
 }
-\makeatother
 
 
 \makeatletter
