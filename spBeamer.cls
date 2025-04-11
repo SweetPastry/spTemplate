@@ -253,6 +253,7 @@
 \makeatother
 
 
+\makeatletter
 \AddToHook{begindocument/end}{%
   \frame{\titlepage}
   \begin{frame}{\IfStrEq{\@sp@lang}{en}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{Summary}}}
@@ -261,6 +262,7 @@
     \end{multicols}
   \end{frame}
 }
+\makeatother
 
 
 \makeatletter
@@ -268,13 +270,13 @@
 \patchcmd{\beamer@continueautobreak}{\framesubtitle}{\beamer@gobbleoptional}{}{\errmessage{failed to patch}}
 \AtEndDocument{
     \begin{frame}[allowframebreaks, plain]
-      \frametitle{\ifnum\insertcontinuationcount=1 References\else\relax\fi}
+      \frametitle{\ifnum\insertcontinuationcount=1 \IfStrEq{\@sp@lang}{en}{References}{\IfStrEq{\@sp@lang}{cn}{参考文献}{References}}\else\relax\fi}
       \if@sp@nocite\nocite{*}\fi
       \IfStrEq{\@sp@lang}{en}{%
-          \printbibliography
+        \printbibliography
       }{%
       \IfStrEq{\@sp@lang}{cn}{%
-          \printbibliography[title=参考文献]
+        \printbibliography[title=参考文献]
       }{%
       \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
      }}
