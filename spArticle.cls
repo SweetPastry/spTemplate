@@ -119,10 +119,9 @@
 			\step[fieldset=urldate, null]
 }}}
 
-
-\RequirePackage[pdfpagelabels=true, breaklinks=true, unicode=true]{hyperref}
+\RequirePackage[pdfencoding=auto, psdextra, pdfpagelabels=true, breaklinks=true, unicode=true]{hyperref}
 \AtEndPreamble{%
-    \IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
+    \ifxetex\IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}\fi
     \hypersetup{%
         pdfauthor = {\@sp@author},
         pdftitle = {\@sp@title},
