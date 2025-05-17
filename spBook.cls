@@ -1,5 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2025/03/18 version: 1.03.01, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2025/03/18 version: 1.03.02, Author: Sweet Pastry]
+
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse}
 \SetupKeyvalOptions{%
@@ -47,7 +48,6 @@
 }
 
 
-
 \LoadClass[10pt]{book}
 \setlength{\parskip}{5pt}
 \IfStrEq{\@sp@lang}{cn}{%
@@ -79,7 +79,7 @@
     {ptmx}            {\RequirePackage{mathptmx}}
     {euler}           {\let\widering\relax\RequirePackage{eulerpx}}
     {newtx}           {\let\widering\relax\RequirePackage{newtxmath, newtxtext}}
-}[\PackageError{spArticle}{Math font \@sp@mathfont not found!}{Use other.}]
+}[\PackageError{spBook}{Math font \@sp@mathfont not found!}{Use other.}]
 
 
 \IfStrEq{\@sp@lang}{en}{%
@@ -132,12 +132,11 @@
     \theoremsymbol{\openbox}
     \newtheorem{proof}{证明}
 }{%
-\PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
+\PackageError{spBook}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}
 \newcommand{\addOneOptionToEnvironment}[1]{%
     \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
     \RenewDocumentEnvironment{#1}{O{} O{}}{%
-        \typeout{22222, old#1, #1}
         \IfStrEq{##1}{}{%
             \begin{old#1}
         }{%
@@ -149,7 +148,7 @@
             }
         }
     }{%
-            \end{old#1}
+        \end{old#1}
     }
 }
 \forcsvlist{\addOneOptionToEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}
@@ -216,7 +215,6 @@
 \fi
 
 
-
 \IfStrEq{\@sp@bibstyle}{undefined}{%
     \IfStrEq{\@sp@lang}{en}{%
         \def\@sp@bibstyle{ieee}
@@ -224,8 +222,9 @@
     \IfStrEq{\@sp@lang}{cn}{%
         \def\@sp@bibstyle{gb7714-2015}
     }{%
-    \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
+    \PackageError{spBook}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}}
+
 
 \RequirePackage[xindy, splitindex]{imakeidx}
 \theoremlisttype{all}
@@ -265,8 +264,10 @@
     \hypersetup{hidelinks}
 \fi
 
+
 \RequirePackage{xurl}
 \RequirePackage[backend=biber, style=\@sp@bibstyle, hyperref=auto, backref=true]{biblatex}
+
 
 \DeclareSourcemap{
 	\maps[datatype=bibtex]{
@@ -286,7 +287,6 @@
 			\step[fieldset=url, null]
 			\step[fieldset=urldate, null]
 }}}
-
 
 
 \AtEndPreamble{

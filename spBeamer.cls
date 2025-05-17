@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBeamer}[2024/01/05 version: 1.00.03, Author: Sweet Pastry]
+\ProvidesClass{spBeamer}[2024/01/05 version: 1.00.04, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring}
@@ -81,7 +81,6 @@
     }{%
         \addbibresource{\@sp@ref.bib}
 }}
-
 
 
 \DeclareSourcemap{
@@ -222,11 +221,12 @@
   \vskip0pt%
 }
 
+
 \setbeamertemplate{blocks}[rectangle]
 \setbeamercovered{dynamic}
 
-\setbeamertemplate{section page}
-{
+
+\setbeamertemplate{section page}{
   \begin{centering}
     \begin{beamercolorbox}[sep=27pt,center]{part title}
       \usebeamerfont{section title}\insertsection\par
@@ -256,13 +256,18 @@
 \makeatletter
 \AddToHook{begindocument/end}{%
   \frame{\titlepage}
-  \begin{frame}{\IfStrEq{\@sp@lang}{en}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{Summary}}}
+  \begin{frame}[label=content]{\IfStrEq{\@sp@lang}{en}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{Summary}}}
     \begin{multicols}{2}
       \tableofcontents
     \end{multicols}
   \end{frame}
 }
 \makeatother
+
+
+\setbeamertemplate{navigation symbols}{
+  \hyperlink{content}{\insertdocnavigationsymbol}
+}
 
 
 \makeatletter
@@ -290,26 +295,27 @@
 }
 \makeatother
 
+
 \newif\ifbibsection
 \bibsectionfalse
-\AtBeginSection[]{
+\AtBeginSection[]{%
   \ifbibsection
     \relax
   \else
       \frame{\sectionpage}
   \fi
 }
-\AtBeginSubsection[]{
+\AtBeginSubsection[]{%
   \ifbibsection
     \relax
   \else
       \frame{\subsectionpage}
   \fi
 }
-\AtBeginEnvironment{bibliography}{
+\AtBeginEnvironment{bibliography}{%
   \bibsectiontrue
 }
-\AtEndEnvironment{bibliography}{
+\AtEndEnvironment{bibliography}{%
   \bibsectionfalse
 }
 

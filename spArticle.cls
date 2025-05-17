@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spArticle}[2025/03/018 version: 1.03.01, Author: Sweet Pastry]
+\ProvidesClass{spArticle}[2025/03/018 version: 1.03.02, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, ifxetex, ifpdf}
@@ -40,7 +40,6 @@
    \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}
 \IfStrEq{\@sp@column}{onecolumn}{\RequirePackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}}
-
 
 
 \RequirePackage{indentfirst}
@@ -99,8 +98,7 @@
 }}
 
 
-
-\DeclareSourcemap{
+\DeclareSourcemap{%
 	\maps[datatype=bibtex]{
 		\map{%
 			\step[
@@ -118,6 +116,7 @@
 			\step[fieldset=url, null]
 			\step[fieldset=urldate, null]
 }}}
+
 
 \RequirePackage[pdfencoding=auto, psdextra, pdfpagelabels=true, breaklinks=true, unicode=true]{hyperref}
 \AtEndPreamble{%
@@ -146,7 +145,7 @@
 
 
 \makeatletter
-\AtBeginDocument{
+\AtBeginDocument{%
     \IfStrEq{\@sp@column}{twocolumn}{%
         \IfStrEq{\@sp@lang}{en}{%
             \begin{strip}
@@ -197,6 +196,7 @@
     \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}}
 \makeatother
+
 
 \newcommand{\hlmath}[2]{\colorbox{#1!17}{$\displaystyle #2$}}
 \newcommand{\hltext}[2]{\colorbox{#1!17}{#2}}
