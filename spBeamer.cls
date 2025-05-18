@@ -21,6 +21,7 @@
 \DeclareStringOption[\@sp@affiliation]{affiliationinshort}
 \DeclareStringOption[\today]{date}
 \DeclareStringOption[undefined]{mathfont}
+\DeclareStringOption[0]{sectionpagestyle}
 \ProcessKeyvalOptions*
 \relax
 
@@ -266,6 +267,11 @@
 
 
 \setbeamertemplate{navigation symbols}{
+  \insertslidenavigationsymbol
+  \insertframenavigationsymbol
+  \insertsubsectionnavigationsymbol
+  \insertsectionnavigationsymbol
+  % \insertbackfindforwardnavigationsymbol
   \hyperlink{content}{\insertdocnavigationsymbol}
 }
 
@@ -298,20 +304,59 @@
 
 \newif\ifbibsection
 \bibsectionfalse
-\AtBeginSection[]{%
-  \ifbibsection
-    \relax
-  \else
-      \frame{\sectionpage}
-  \fi
-}
-\AtBeginSubsection[]{%
-  \ifbibsection
-    \relax
-  \else
-      \frame{\subsectionpage}
-  \fi
-}
+\makeatletter
+\ifcase\@sp@sectionpagestyle
+  \AtBeginSection[]{%
+    \ifbibsection
+      \relax
+    \else
+        \frame{\sectionpage}
+    \fi
+  }
+  \AtBeginSubsection[]{%
+    \ifbibsection
+      \relax
+    \else
+        \frame{\subsectionpage}
+    \fi
+  }
+\or
+  \setbeamertemplate{section in toc shaded}[default][50]
+  \setbeamertemplate{subsection in toc shaded}[default][30]
+  \setbeamertemplate{subsubsection in toc shaded}[default][15]
+  % \AtBeginSection[]{%
+  %   \begin{frame}{\IfStrEq{\@sp@lang}{en}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{Summary}}}
+  %     \begin{multicols}{2}
+  %       \tableofcontents[
+  %         sectionstyle=show/shaded,
+  %         subsectionstyle=show/show/shaded,
+  %         subsubsectionstyle=show/show/show/shaded
+  %       ]
+  %     \end{multicols}
+  %   \end{frame}
+  % }
+  \AtBeginSection[]{%
+    \ifbibsection
+      \relax
+    \else
+        \frame{\sectionpage}
+    \fi
+  }
+  \AtBeginSubsection[]{%
+    \begin{frame}{\IfStrEq{\@sp@lang}{en}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{Summary}}}
+      \begin{multicols}{2}
+        \tableofcontents[
+          sectionstyle=show/shaded,
+          subsectionstyle=show/shaded/shaded,
+          subsubsectionstyle=show/show/shaded/shaded
+        ]
+      \end{multicols}
+    \end{frame}
+  }
+\else
+    \PackageError{spBeamer}{Section Page Style Index Error!}{Use sectionpagestyle=0 as default.}
+\fi
+\makeatother
 \AtBeginEnvironment{bibliography}{%
   \bibsectiontrue
 }
