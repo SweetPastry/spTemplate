@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2025/03/18 version: 1.03.02, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2025/03/18 version: 1.03.03, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse}
@@ -145,12 +145,9 @@
                 \expandafter\def\csname #1index\endcsname{##1}
             }{%
                 \expandafter\def\csname #1index\endcsname{##2}
-            }
-        }
-    }{%
+    }}}{%
         \end{old#1}
-    }
-}
+}}
 \forcsvlist{\addOneOptionToEnvironment}{definition, theorem, corollary, lemma, proposition, definition-theorem, definition-proposition, hypothesis, conjecture, example, remark, convention, exercise, proof}
 \newcommand{\defineIndexedEnvironment}[1]{%
     \AtEndEnvironment{#1}{%
@@ -269,30 +266,30 @@
 \RequirePackage[backend=biber, style=\@sp@bibstyle, hyperref=auto, backref=true]{biblatex}
 
 
-\DeclareSourcemap{
-	\maps[datatype=bibtex]{
-		\map{%
-			\step[
-			fieldsource=url,
-			match=\regexp{http://dx.doi.org/(.+)},
-			fieldtarget=doi,
-			]
-			\step[
-			fieldsource=doi,
-			match=\regexp{http://dx.doi.org/(.+)},
-			replace=\regexp{$1}
-        ]}
-		\map{%
-			\step[fieldsource=doi, final]
-			\step[fieldset=url, null]
-			\step[fieldset=urldate, null]
-}}}
+% \DeclareSourcemap{%
+% 	\maps[datatype=bibtex]{%
+% 		\map{%
+% 			\step[
+% 			fieldsource=url,
+% 			match=\regexp{http://dx.doi.org/(.+)},
+% 			fieldtarget=doi,
+% 			]
+% 			\step[
+% 			fieldsource=doi,
+% 			match=\regexp{http://dx.doi.org/(.+)},
+% 			replace=\regexp{$1}
+%         ]}
+% 		\map{%
+% 			\step[fieldsource=doi, final]
+% 			\step[fieldset=url, null]
+% 			\step[fieldset=urldate, null]
+% }}}
 
 
-\AtEndPreamble{
+\AtEndPreamble{%
 	\RequirePackage{geometry}
 	\IfStrEq{\@sp@geometry}{b5}{%
-	\geometry{
+	\geometry{%
 		paper=b5paper,
 		headheight=5ex,
 		headsep=5ex,
@@ -304,7 +301,7 @@
 	}}{}
 
 	\IfStrEq{\@sp@geometry}{a4}{%
-	\geometry{
+	\geometry{%
 		paper=a4paper,
 		top=3cm,
 		inner=2.54cm,
@@ -324,7 +321,7 @@
     \fancyhead[RO]{}
     \fancyhead[LE]{}
     \fancyhead[RE]{\leftmark}
-    \fancypagestyle{plain}{
+    \fancypagestyle{plain}{%
         \fancyhead{}
         \renewcommand{\headrulewidth}{0pt}
     }
@@ -342,11 +339,10 @@
         \addbibresource{\@sp@ref}
     }{%
         \addbibresource{\@sp@ref.bib}
-    }
-}
+}}
 
 
-\g@addto@macro\frontmatter{
+\g@addto@macro\frontmatter{%
     \ifdefempty{\@sp@coverpage}{\relax}{%
         \pagestyle{empty}
         \renewcommand{\thepage}{C\arabic{page}}
@@ -378,7 +374,7 @@
 }
 
 
-\g@addto@macro\appendix{
+\g@addto@macro\appendix{%
     \IfStrEq{\@sp@lang}{en}{%
         \relax
     }{%
@@ -402,7 +398,7 @@
 
 
 \makeatletter
-\AtEndDocument{
+\AtEndDocument{%
     \appendix
     \backmatter
     \IfStrEq{\@sp@lang}{cn}{%
@@ -422,7 +418,6 @@
         \printbibliography[heading=bibintoc, title=参考文献]
     }{%
     \relax
-    }}
-}
+}}}
 \makeatother
 \endinput

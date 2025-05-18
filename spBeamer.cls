@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBeamer}[2024/01/05 version: 1.00.04, Author: Sweet Pastry]
+\ProvidesClass{spBeamer}[2024/01/05 version: 1.00.05, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring}
@@ -83,24 +83,24 @@
 }}
 
 
-\DeclareSourcemap{
-	\maps[datatype=bibtex]{
-		\map{%
-			\step[
-			fieldsource=url,
-			match=\regexp{http://dx.doi.org/(.+)},
-			fieldtarget=doi,
-			]
-			\step[
-			fieldsource=doi,
-			match=\regexp{http://dx.doi.org/(.+)},
-			replace=\regexp{$1}
-        ]}
-		\map{%
-			\step[fieldsource=doi, final]
-			\step[fieldset=url, null]
-			\step[fieldset=urldate, null]
-}}}
+% \DeclareSourcemap{%
+% 	\maps[datatype=bibtex]{%
+% 		\map{%
+% 			\step[
+% 			fieldsource=url,
+% 			match=\regexp{http://dx.doi.org/(.+)},
+% 			fieldtarget=doi,
+% 			]
+% 			\step[
+% 			fieldsource=doi,
+% 			match=\regexp{http://dx.doi.org/(.+)},
+% 			replace=\regexp{$1},
+%     ]}
+% 		\map{%
+% 			\step[fieldsource=doi, final]
+% 			\step[fieldset=url, null]
+% 			\step[fieldset=urldate, null]
+% }}}
 
 
 \makeatletter
@@ -208,7 +208,7 @@
 \setbeamercolor{background canvas}{bg=secondary}
 
 
-\setbeamertemplate{footline}{
+\setbeamertemplate{footline}{%
   \leavevmode
   \hbox{%
     \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}
@@ -226,7 +226,7 @@
 \setbeamercovered{dynamic}
 
 
-\setbeamertemplate{section page}{
+\setbeamertemplate{section page}{%
   \begin{centering}
     \begin{beamercolorbox}[sep=27pt,center]{part title}
       \usebeamerfont{section title}\insertsection\par

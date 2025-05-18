@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spArticle}[2025/03/018 version: 1.03.02, Author: Sweet Pastry]
+\ProvidesClass{spArticle}[2025/03/018 version: 1.03.03, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, ifxetex, ifpdf}
@@ -98,24 +98,24 @@
 }}
 
 
-\DeclareSourcemap{%
-	\maps[datatype=bibtex]{
-		\map{%
-			\step[
-			fieldsource=url,
-			match=\regexp{http://dx.doi.org/(.+)},
-			fieldtarget=doi,
-			]
-			\step[
-			fieldsource=doi,
-			match=\regexp{http://dx.doi.org/(.+)},
-			replace=\regexp{$1}
-        ]}
-		\map{%
-			\step[fieldsource=doi, final]
-			\step[fieldset=url, null]
-			\step[fieldset=urldate, null]
-}}}
+% \DeclareSourcemap{%
+% 	\maps[datatype=bibtex]{%
+% 		\map{%
+% 			\step[
+% 			fieldsource=url,
+% 			match=\regexp{http://dx.doi.org/(.+)},
+% 			fieldtarget=doi,
+% 			]
+% 			\step[
+% 			fieldsource=doi,
+% 			match=\regexp{http://dx.doi.org/(.+)},
+% 			replace=\regexp{$1}
+%         ]}
+% 		\map{%
+% 			\step[fieldsource=doi, final]
+% 			\step[fieldset=url, null]
+% 			\step[fieldset=urldate, null]
+% }}}
 
 
 \RequirePackage[pdfencoding=auto, psdextra, pdfpagelabels=true, breaklinks=true, unicode=true]{hyperref}
