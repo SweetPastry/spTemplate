@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBeamer}[2024/01/05 version: 1.00.05, Author: Sweet Pastry]
+\ProvidesClass{spBeamer}[2024/01/05 version: 1.01.01, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring}
@@ -40,7 +40,7 @@
 
 \PassOptionsToPackage{version=4}{mhchem}
 \PassOptionsToPackage{pdfpagelabels=true, breaklinks=true, unicode=true}{hyperref}
-\RequirePackage{amsmath, amssymb, amsthm, amsfonts, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, refcount, multicol, hyperref}
+\RequirePackage{amsmath, amssymb, amsthm, amsfonts, mathtools, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, refcount, multicol, hyperref}
 \IfStrEq{\@sp@lang}{cn}{%
 \ifxetex\RequirePackage{xeCJK}\fi
 \ifpdf\RequirePackage{ctex}\fi
@@ -77,31 +77,12 @@
 \RequirePackage{xurl}
 \RequirePackage[backend=biber, style=\@sp@bibstyle]{biblatex}
 \AtEndPreamble{%
-    \IfEndWith{\@sp@ref}{.bib}{%
-        \addbibresource{\@sp@ref}
-    }{%
-        \addbibresource{\@sp@ref.bib}
+  \IfEndWith{\@sp@ref}{.bib}{%
+    \addbibresource{\@sp@ref}
+  }{%
+    \addbibresource{\@sp@ref.bib}
 }}
-
-
-% \DeclareSourcemap{%
-% 	\maps[datatype=bibtex]{%
-% 		\map{%
-% 			\step[
-% 			fieldsource=url,
-% 			match=\regexp{http://dx.doi.org/(.+)},
-% 			fieldtarget=doi,
-% 			]
-% 			\step[
-% 			fieldsource=doi,
-% 			match=\regexp{http://dx.doi.org/(.+)},
-% 			replace=\regexp{$1},
-%     ]}
-% 		\map{%
-% 			\step[fieldsource=doi, final]
-% 			\step[fieldset=url, null]
-% 			\step[fieldset=urldate, null]
-% }}}
+\RequirePackage{bookmark}
 
 
 \makeatletter
@@ -219,7 +200,7 @@
       \usebeamerfont{date in head/foot}\insertframenumber{} / \inserttotalframenumber\hspace{2ex}
     \end{beamercolorbox}
   }
-  \vskip0pt%
+  \vskip0pt
 }
 
 
@@ -244,13 +225,23 @@
       pdfauthor = {\@sp@author},
       pdftitle = {\@sp@title},
       pdfkeywords = {spArticle},
+      bookmarks=true,
+      bookmarksopen=true,
   }
   \title{\bfseries\@sp@title}
   \subtitle{\@sp@subtitle}
   \author[\@sp@authorinshort]{\bfseries\@sp@author}
   \institute[\textit{\@sp@affiliationinshort}]{\textit{\@sp@affiliation}}
   \date{\@sp@date}
-}
+  \hbadness=10000
+  \hfuzz=5pt
+  \vbadness=10000
+  \vfuzz=5pt
+  \IfStrEq{\@sp@lang}{cn}{%
+    \def\sp@tocname{目录}
+  }{%
+    \def\sp@tocname{Content}
+}}
 \makeatother
 
 
@@ -258,10 +249,14 @@
 \AddToHook{begindocument/end}{%
   \frame{\titlepage}
   \begin{frame}[label=content]{\IfStrEq{\@sp@lang}{en}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{Summary}}}
+    \hypertarget{toc}{}
     \begin{multicols}{2}
       \tableofcontents
     \end{multicols}
   \end{frame}
+  }
+  \AtBeginDocument{%
+    \bookmark[dest=toc,level=2]{\sp@tocname}
 }
 \makeatother
 
@@ -324,17 +319,6 @@
   \setbeamertemplate{section in toc shaded}[default][50]
   \setbeamertemplate{subsection in toc shaded}[default][30]
   \setbeamertemplate{subsubsection in toc shaded}[default][15]
-  % \AtBeginSection[]{%
-  %   \begin{frame}{\IfStrEq{\@sp@lang}{en}{Summary}{\IfStrEq{\@sp@lang}{cn}{目录}{Summary}}}
-  %     \begin{multicols}{2}
-  %       \tableofcontents[
-  %         sectionstyle=show/shaded,
-  %         subsectionstyle=show/show/shaded,
-  %         subsubsectionstyle=show/show/show/shaded
-  %       ]
-  %     \end{multicols}
-  %   \end{frame}
-  % }
   \AtBeginSection[]{%
     \ifbibsection
       \relax
