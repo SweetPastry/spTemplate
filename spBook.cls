@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2025/03/18 version: 1.03.03, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2025/05/27 version: 1.03.04, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse}
@@ -264,26 +264,6 @@
 
 \RequirePackage{xurl}
 \RequirePackage[backend=biber, style=\@sp@bibstyle, hyperref=auto, backref=true]{biblatex}
-
-
-% \DeclareSourcemap{%
-% 	\maps[datatype=bibtex]{%
-% 		\map{%
-% 			\step[
-% 			fieldsource=url,
-% 			match=\regexp{http://dx.doi.org/(.+)},
-% 			fieldtarget=doi,
-% 			]
-% 			\step[
-% 			fieldsource=doi,
-% 			match=\regexp{http://dx.doi.org/(.+)},
-% 			replace=\regexp{$1}
-%         ]}
-% 		\map{%
-% 			\step[fieldsource=doi, final]
-% 			\step[fieldset=url, null]
-% 			\step[fieldset=urldate, null]
-% }}}
 
 
 \AtEndPreamble{%
