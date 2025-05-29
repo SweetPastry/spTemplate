@@ -181,7 +181,7 @@
     \definecolor{tudelft-donkergrijs}{RGB}{92,92,92}
 
     \newcommand{\tcbsetColor}[2]{%
-        \tcolorboxenvironment{#2}{
+        \tcolorboxenvironment{#2}{%
                 enhanced,
                 breakable,
                 colback = #1!3!white,

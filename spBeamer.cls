@@ -98,6 +98,7 @@
 \useinnertheme{rectangles}
 \usefonttheme{professionalfonts}
 
+
 % BrowBlack and OrangeRed
 \definecolor{orange}{HTML}{f28165}
 \definecolor{deepgray}{HTML}{303030}
@@ -261,7 +262,7 @@
 \makeatother
 
 
-\setbeamertemplate{navigation symbols}{
+\setbeamertemplate{navigation symbols}{%
   \insertslidenavigationsymbol
   \insertframenavigationsymbol
   \insertsubsectionnavigationsymbol
@@ -274,18 +275,18 @@
 \makeatletter
 \patchcmd{\beamer@continueautobreak}{\frametitle}{\beamer@gobbleoptional}{}{\errmessage{failed to patch}}
 \patchcmd{\beamer@continueautobreak}{\framesubtitle}{\beamer@gobbleoptional}{}{\errmessage{failed to patch}}
-\AtEndDocument{
+\AtEndDocument{%
     \begin{frame}[allowframebreaks, plain]
       \frametitle{\ifnum\insertcontinuationcount=1 \IfStrEq{\@sp@lang}{en}{References}{\IfStrEq{\@sp@lang}{cn}{参考文献}{References}}\else\relax\fi}
       \if@sp@nocite\nocite{*}\fi
       \IfStrEq{\@sp@lang}{en}{%
         \printbibliography
       }{%
-      \IfStrEq{\@sp@lang}{cn}{%
+        \IfStrEq{\@sp@lang}{cn}{%
         \printbibliography[title=参考文献]
       }{%
-      \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
-     }}
+        \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
+      }}
     \end{frame}
 
   \begin{frame}[plain]{}
