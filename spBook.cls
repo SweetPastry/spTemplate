@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2025/05/27 version: 1.03.04, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2025/05/27 version: 1.03.05, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse}
@@ -181,7 +181,7 @@
     \definecolor{tudelft-donkergrijs}{RGB}{92,92,92}
 
     \newcommand{\tcbsetColor}[2]{%
-        \tcolorboxenvironment{#2}{
+        \tcolorboxenvironment{#2}{%
                 enhanced,
                 breakable,
                 colback = #1!3!white,

@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spArticle}[2025/03/018 version: 1.03.04, Author: Sweet Pastry]
+\ProvidesClass{spArticle}[2025/03/018 version: 1.03.05, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, ifxetex, ifpdf}
@@ -37,7 +37,7 @@
 \IfStrEq{\@sp@lang}{cn}{%
     \LoadClass[\@sp@column]{ctexart}
 }{%
-   \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
+    \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
 }}
 \IfStrEq{\@sp@column}{onecolumn}{\RequirePackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}}
 
@@ -143,7 +143,7 @@
                 \textbf{摘要}. \small{\song{\@sp@abstract}}\leavevmode
             \end{strip}
     }{%
-       \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
+        \PackageError{spArticle}{Only Support en(English) and cn(Chinese)!}{Use en or cn instead.}
     }}}{%
     \IfStrEq{\@sp@column}{onecolumn}{%
         \maketitle
