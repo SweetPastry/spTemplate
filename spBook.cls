@@ -36,15 +36,14 @@
 \newcommand{\spCover}[1]{\def@sp@coverpage{#1}}
 \newcommand{\spCoverpage}[1]{\def@sp@coverpage{#1}}
 \NewDocumentCommand{\spChapter}{om}{%
+    \IfStrEq{\@sp@lang}{cn}{\renewcommand{\chaptername}{章节}}{}%
     \IfNoValueTF{#1}{%
-        \def\@chaptermark{#2}
-        \chapter[#2]{#2}
+    \def\@chaptermark{#2}
+    \chapter[#2]{#2}
     }{%
-        \def\@chaptermark{#2}
-        \chapter[#2]{#1}
+    \def\@chaptermark{#2}
+    \chapter[#2]{#1}
     }
-    \chaptermark{\@chaptermark}
-    \IfStrEq{\@sp@lang}{cn}{\renewcommand{\@chapapp}{章节}}
 }
 
 
