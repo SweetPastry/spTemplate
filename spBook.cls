@@ -428,18 +428,30 @@
 
 
 \makeatletter
+\newcommand*{\sp@ifhasfigures}{\ifnum\value{figure}>0 }
+\newcommand*{\sp@ifhastables} {\ifnum\value{table}>0  }
+\newcommand*{\sp@ifhasindex}{\IfFileExists{\jobname.ind}}
 \AtEndDocument{%
     \appendix
     \backmatter
+
     \IfStrEq{\@sp@lang}{cn}{%
-    \renewcommand{\listfigurename}{插图索引}
-    \renewcommand{\listtablename}{表格索引}
+        \renewcommand{\listfigurename}{插图索引}
+        \renewcommand{\listtablename}{表格索引}
     }{\relax}
-    \addcontentsline{toc}{chapter}{\listfigurename}
-    \listoffigures
-    \addcontentsline{toc}{chapter}{\listtablename}
-    \listoftables
-    \printindex[statement]
+
+    \sp@ifhasfigures
+        \addcontentsline{toc}{chapter}{\listfigurename}
+        \listoffigures
+    \fi
+
+    \sp@ifhastables
+        \addcontentsline{toc}{chapter}{\listtablename}
+        \listoftables
+    \fi
+
+    \sp@ifhasindex{\printindex[statement]}{}
+
     \if@sp@nocite\nocite{*}\fi
     \IfStrEq{\@sp@lang}{en}{%
         \printbibliography[heading=bibintoc]
