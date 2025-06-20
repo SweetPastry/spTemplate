@@ -47,12 +47,20 @@
 \newcommand{\spCoverpage}[1]{\def@sp@coverpage{#1}}
 
 
+
+
 \NewDocumentCommand{\spChapter}{om}{%
+    \IfStrEq{\@sp@lang}{cn}{\renewcommand{\chaptername}{章节}}{}
     \IfStrEq{\@sp@lang}{cn}{\renewcommand{\chaptername}{章节}}{}
     \IfNoValueTF{#1}{%
         \def\@chaptermark{#2}
         \chapter[#2]{#2}
+        \def\@chaptermark{#2}
+        \chapter[#2]{#2}
     }{%
+        \def\@chaptermark{#2}
+        \chapter[#2]{#1}
+}}
         \def\@chaptermark{#2}
         \chapter[#2]{#1}
 }}
@@ -61,6 +69,7 @@
 \PassOptionsToClass{a4paper}{\@baseclass}
 \PassOptionsToClass{fontsize=10pt}{\@baseclass}
 \PassOptionsToClass{parskip=half}{\@baseclass}
+\PassOptionsToClass{headings=optiontoheadandtoc}{\@baseclass}
 \PassOptionsToClass{headings=optiontoheadandtoc}{\@baseclass}
 \PassOptionsToClass{chapterprefix=true}{\@baseclass}
 \LoadClass{\@baseclass}
@@ -277,6 +286,7 @@
 
 
 \RequirePackage{marginnote, sidenotes}
+\RequirePackage{marginnote, sidenotes}
 
 
 \AtEndPreamble{%
@@ -396,6 +406,7 @@
 
     \setcounter{page}{1}
 	\pagestyle{plain}
+	\pagestyle{plain}
 	\addtocontents{toc}{\protect\thispagestyle{empty}}
     \cleardoublepage
     \setcounter{page}{1}
@@ -429,14 +440,33 @@
 \newcommand*{\sp@ifhasfigures}{\ifnum\value{figure}>0 }
 \newcommand*{\sp@ifhastables} {\ifnum\value{table}>0  }
 \newcommand*{\sp@ifhasindex}{\IfFileExists{\jobname.ind}}
+\newcommand*{\sp@ifhasfigures}{\ifnum\value{figure}>0 }
+\newcommand*{\sp@ifhastables} {\ifnum\value{table}>0  }
+\newcommand*{\sp@ifhasindex}{\IfFileExists{\jobname.ind}}
 \AtEndDocument{%
     \appendix
     \backmatter
 
+
     \IfStrEq{\@sp@lang}{cn}{%
         \renewcommand{\listfigurename}{插图索引}
         \renewcommand{\listtablename}{表格索引}
+        \renewcommand{\listfigurename}{插图索引}
+        \renewcommand{\listtablename}{表格索引}
     }{\relax}
+
+    \sp@ifhasfigures
+        \addcontentsline{toc}{chapter}{\listfigurename}
+        \listoffigures
+    \fi
+
+    \sp@ifhastables
+        \addcontentsline{toc}{chapter}{\listtablename}
+        \listoftables
+    \fi
+
+    \sp@ifhasindex{\printindex[statement]}{}
+
 
     \sp@ifhasfigures
         \addcontentsline{toc}{chapter}{\listfigurename}
@@ -458,6 +488,8 @@
         \printbibliography[heading=bibintoc, title=参考文献]
     }{%
     \relax
+    }}
+}
     }}
 }
 \makeatother
