@@ -1,3 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% spBook
+%
+% Github:
+% https://github.com/SweetPastry/spTemplate
+%
+% Authors:
+% Sweet Pastry (SweetPastryLHX@gmail.com)
+%
+% License:
+% CC BY 4.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{spBook}[2025/05/27 version: 1.03.05, Author: Sweet Pastry]
 
@@ -10,29 +24,23 @@
 \DeclareBoolOption[true]{colorlinks}
 \DeclareBoolOption[false]{colorbox}
 \DeclareBoolOption[true]{nocite}
-% \DeclareStringOption[twocolumn]{column}
 \DeclareStringOption[en]{lang}
 \DeclareStringOption[a4]{geometry}
 \DeclareStringOption[author]{author}
-% \DeclareStringOption[affiliation]{affiliation}
 \DeclareStringOption[\today]{date}
 \DeclareStringOption[Here is title]{title}
-% \DeclareStringOption[Here is abstract]{abstract}
 \DeclareStringOption[ref]{ref}
 \DeclareStringOption[cover]{cover}
 \DeclareStringOption[undefined]{bibstyle}
 \DeclareStringOption[]{coverpage}
 \DeclareStringOption[undefined]{mathfont}
-% \DeclareStringOption[]{preface}
 \ProcessKeyvalOptions*
 \relax
 
 
-% \newcommand{\spAbstract}[1]{\def\@sp@abstract{#1}}
 \newcommand{\spTitle}[1]{\def\@sp@title{#1}}
 \newcommand{\spAuthor}[1]{\def\@sp@author{#1}}
 \newcommand{\spDate}[1]{\def\@sp@date{#1}}
-% \newcommand{\spAffiliation}[1]{\def\@sp@affiliation{#1}}
 \newcommand{\spCover}[1]{\def@sp@coverpage{#1}}
 \newcommand{\spCoverpage}[1]{\def@sp@coverpage{#1}}
 \NewDocumentCommand{\spChapter}{om}{%
@@ -195,7 +203,6 @@
                 description font = \mdseries,
                 separator sign none,
                 segmentation style={solid, #1},
-                % fontupper=\fontfamily{ppl}\selectfont
     }}
     % \makeatletter
     \tcbsetColor{tudelft-groen}{definition}
@@ -205,9 +212,6 @@
     \tcbsetColor{tudelft-roze}{corollary}
     \tcbsetColor{tudelft-rood}{lemma}
     \tcbsetColor{tudelft-donkerblauw}{proposition}
-    % \tcbsetColor{tudelft-bosgroen}{remark}
-    % \tcbsetColor{tudelft-bosgroen}{example}
-    % \makeatother
 \fi
 
 

@@ -1,3 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% spArticle
+%
+% Github:
+% https://github.com/SweetPastry/spTemplate
+%
+% Authors:
+% Sweet Pastry (SweetPastryLHX@gmail.com)
+%
+% License:
+% CC BY 4.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{spArticle}[2025/03/018 version: 1.03.05, Author: Sweet Pastry]
 

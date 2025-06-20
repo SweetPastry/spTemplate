@@ -1,3 +1,17 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% spBeamer
+%
+% Github:
+% https://github.com/SweetPastry/spTemplate
+%
+% Authors:
+% Sweet Pastry (SweetPastryLHX@gmail.com)
+%
+% License:
+% CC BY 4.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{spBeamer}[2025/05/27 version: 1.03.05, Author: Sweet Pastry]
 
