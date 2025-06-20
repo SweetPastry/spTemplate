@@ -38,6 +38,7 @@
 \relax
 
 
+\newcommand{\@baseclass}{scrbook}
 \newcommand{\spTitle}[1]{\def\@sp@title{#1}}
 \newcommand{\spAuthor}[1]{\def\@sp@author{#1}}
 \newcommand{\spDate}[1]{\def\@sp@date{#1}}
@@ -55,8 +56,12 @@
 }
 
 
-\LoadClass[10pt]{book}
-\setlength{\parskip}{5pt}
+\PassOptionsToClass{a4paper}{\@baseclass}
+\PassOptionsToClass{fontsize=10pt}{\@baseclass}
+\PassOptionsToClass{parskip=half}{\@baseclass}
+\PassOptionsToClass{headings=oldstyle}{\@baseclass}
+\PassOptionsToClass{chapterprefix=true}{\@baseclass}
+\LoadClass{\@baseclass}
 \IfStrEq{\@sp@lang}{cn}{%
     \RequirePackage{setspace}
     \onehalfspacing
