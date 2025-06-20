@@ -384,9 +384,14 @@
         }{%
         \PackageError{spBook}{Coverpage file format error!}{Use .pdf or .tex.}
         }}}}
-		\pagestyle{fancy}
-		\pagenumbering{roman}
+
+        \pagestyle{empty}
+        \newgeometry{left=0pt, right=0pt, top=0pt, bottom=0pt, noheadfoot}
+        \pagenumbering{roman}
         \maketitle
+        \restoregeometry
+
+        \pagestyle{fancy}
         \IfStrEq{\@sp@lang}{cn}{\renewcommand{\contentsname}{目录}}{\relax}
         \tableofcontents
     }
