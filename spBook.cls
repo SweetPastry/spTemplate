@@ -45,22 +45,23 @@
 \newcommand{\spDate}[1]{\def\@sp@date{#1}}
 \newcommand{\spCover}[1]{\def@sp@coverpage{#1}}
 \newcommand{\spCoverpage}[1]{\def@sp@coverpage{#1}}
+
+
 \NewDocumentCommand{\spChapter}{om}{%
-    \IfStrEq{\@sp@lang}{cn}{\renewcommand{\chaptername}{章节}}{}%
+    \IfStrEq{\@sp@lang}{cn}{\renewcommand{\chaptername}{章节}}{}
     \IfNoValueTF{#1}{%
-    \def\@chaptermark{#2}
-    \chapter[#2]{#2}
+        \def\@chaptermark{#2}
+        \chapter[#2]{#2}
     }{%
-    \def\@chaptermark{#2}
-    \chapter[#2]{#1}
-    }
-}
+        \def\@chaptermark{#2}
+        \chapter[#2]{#1}
+}}
 
 
 \PassOptionsToClass{a4paper}{\@baseclass}
 \PassOptionsToClass{fontsize=10pt}{\@baseclass}
 \PassOptionsToClass{parskip=half}{\@baseclass}
-\PassOptionsToClass{headings=oldstyle}{\@baseclass}
+\PassOptionsToClass{headings=optiontoheadandtoc}{\@baseclass}
 \PassOptionsToClass{chapterprefix=true}{\@baseclass}
 \LoadClass{\@baseclass}
 \IfStrEq{\@sp@lang}{cn}{%
@@ -275,9 +276,7 @@
 \RequirePackage[backend=biber, style=\@sp@bibstyle, hyperref=auto, backref=true]{biblatex}
 
 
-\if@sp@margin
-    \RequirePackage{marginnote, sidenotes}
-\fi
+\RequirePackage{marginnote, sidenotes}
 
 
 \AtEndPreamble{%
@@ -384,15 +383,17 @@
         }{%
         \PackageError{spBook}{Coverpage file format error!}{Use .pdf or .tex.}
         }}}}
-		\pagestyle{fancy}
+
+		\pagestyle{empty}
 		\pagenumbering{roman}
         \maketitle
+
         \IfStrEq{\@sp@lang}{cn}{\renewcommand{\contentsname}{目录}}{\relax}
         \tableofcontents
     }
 
     \setcounter{page}{1}
-	\thispagestyle{empty}
+	\pagestyle{plain}
 	\addtocontents{toc}{\protect\thispagestyle{empty}}
     \cleardoublepage
     \setcounter{page}{1}
@@ -423,18 +424,30 @@
 
 
 \makeatletter
+\newcommand*{\sp@ifhasfigures}{\ifnum\value{figure}>0 }
+\newcommand*{\sp@ifhastables} {\ifnum\value{table}>0  }
+\newcommand*{\sp@ifhasindex}{\IfFileExists{\jobname.ind}}
 \AtEndDocument{%
     \appendix
     \backmatter
+
     \IfStrEq{\@sp@lang}{cn}{%
-    \renewcommand{\listfigurename}{插图索引}
-    \renewcommand{\listtablename}{表格索引}
+        \renewcommand{\listfigurename}{插图索引}
+        \renewcommand{\listtablename}{表格索引}
     }{\relax}
-    \addcontentsline{toc}{chapter}{\listfigurename}
-    \listoffigures
-    \addcontentsline{toc}{chapter}{\listtablename}
-    \listoftables
-    \printindex[statement]
+
+    \sp@ifhasfigures
+        \addcontentsline{toc}{chapter}{\listfigurename}
+        \listoffigures
+    \fi
+
+    \sp@ifhastables
+        \addcontentsline{toc}{chapter}{\listtablename}
+        \listoftables
+    \fi
+
+    \sp@ifhasindex{\printindex[statement]}{}
+
     \if@sp@nocite\nocite{*}\fi
     \IfStrEq{\@sp@lang}{en}{%
         \printbibliography[heading=bibintoc]
@@ -443,6 +456,7 @@
         \printbibliography[heading=bibintoc, title=参考文献]
     }{%
     \relax
-}}}
+    }}
+}
 \makeatother
 \endinput
