@@ -16,7 +16,7 @@
 \ProvidesClass{spBook}[2025/05/27 version: 1.03.05, Author: Sweet Pastry]
 
 
-\RequirePackage{kvoptions, etoolbox, xstring, xparse}
+\RequirePackage{kvoptions, etoolbox, xstring, xparse, ifthen}
 \SetupKeyvalOptions{%
     family = @sp,
     prefix = @sp@
@@ -24,6 +24,7 @@
 \DeclareBoolOption[true]{colorlinks}
 \DeclareBoolOption[false]{colorbox}
 \DeclareBoolOption[true]{nocite}
+\DeclareBoolOption[false]{margin}
 \DeclareStringOption[en]{lang}
 \DeclareStringOption[a4]{geometry}
 \DeclareStringOption[author]{author}
@@ -274,32 +275,66 @@
 \RequirePackage[backend=biber, style=\@sp@bibstyle, hyperref=auto, backref=true]{biblatex}
 
 
+\if@sp@margin
+    \RequirePackage{marginnote, sidenotes}
+\fi
+
+
 \AtEndPreamble{%
 	\RequirePackage{geometry}
 	\IfStrEq{\@sp@geometry}{b5}{%
-	\geometry{%
-		paper=b5paper,
-		headheight=5ex,
-		headsep=5ex,
-		textwidth=132mm,
-		textheight=198mm,
-		twoside,
-		% bindingoffset=18pt,
-		asymmetric
-	}}{}
+        \if@sp@margin
+            \geometry{%
+                paper=b5paper,
+                twoside,
+                inner=22mm,
+                outer=50mm,
+                marginparwidth=38mm,
+                marginparsep=7mm,
+                top=25mm,
+                bottom=27mm,
+                headheight=5ex,
+                headsep=4ex
+            }
+        \else
+            \geometry{%
+                paper=b5paper,
+                headheight=5ex,
+                headsep=5ex,
+                textwidth=132mm,
+                textheight=198mm,
+                twoside,
+            }
+        \fi
+    }{}
 
 	\IfStrEq{\@sp@geometry}{a4}{%
-	\geometry{%
-		paper=a4paper,
-		top=3cm,
-		inner=2.54cm,
-		outer=2.54cm,
-		bottom=3cm,
-		headheight=6ex,
-		headsep=6ex,
-		twoside,
-		asymmetric
-	}}
+        \if@sp@margin
+            \geometry{%
+                paper=a4paper,
+                twoside,
+                inner=28mm,
+                outer=60mm,
+                marginparwidth=40mm,
+                marginparsep=8mm,
+                top=25mm,
+                bottom=30mm,
+                headheight=5ex,
+                headsep=5ex,
+            }
+        \else
+            \geometry{%
+                paper=a4paper,
+                top=3cm,
+                inner=2.54cm,
+                outer=2.54cm,
+                bottom=3cm,
+                headheight=6ex,
+                headsep=6ex,
+                twoside,
+            }
+        \fi
+    }
 
     \RequirePackage[iso, english]{isodate}
     \RequirePackage{indentfirst}
@@ -359,6 +394,8 @@
     \setcounter{page}{1}
 	\thispagestyle{empty}
 	\addtocontents{toc}{\protect\thispagestyle{empty}}
+    \cleardoublepage
+    \setcounter{page}{1}
 }
 
 
