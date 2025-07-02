@@ -13,7 +13,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBeamer}[2025/05/27 version: 1.03.05, Author: Sweet Pastry]
+\ProvidesClass{spBeamer}[2025/7/3 version: 1.03.06 Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring}
@@ -53,7 +53,6 @@
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\PassOptionsToPackage{pdfpagelabels=true, breaklinks=true, unicode=true}{hyperref}
 \RequirePackage{amsmath, amssymb, amsthm, amsfonts, mathtools, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, refcount, multicol, hyperref}
 \IfStrEq{\@sp@lang}{cn}{%
 \ifxetex\RequirePackage{xeCJK}\fi
@@ -148,31 +147,31 @@
 \ifcase\@sp@style
   \colorlet{primary}{orange}
   \colorlet{secondary}{deepgray}
-  \colorlet{highlight}{yellow}
+  \colorlet{blue}{yellow}
   \colorlet{accent}{lightorange}
   \setbeamercolor{normal text}{bg=secondary,fg=white}
 \or
   \colorlet{primary}{Black}
   \colorlet{secondary}{White}
-  \colorlet{highlight}{Gray}
+  \colorlet{blue}{Gray}
   \colorlet{accent}{DarkGray}
   \setbeamercolor{normal text}{bg=secondary,fg=black}
 \or
   \colorlet{primary}{SlateGray}
   \colorlet{secondary}{ReflectiveWhite}
-  \colorlet{highlight}{TealBlue}
+  \colorlet{blue}{TealBlue}
   \colorlet{accent}{SeafoamGreen}
   \setbeamercolor{normal text}{bg=secondary,fg=black}
 \or
   \colorlet{primary}{OliveGreen}
   \colorlet{secondary}{ReflectiveWhite}
-  \colorlet{highlight}{FruitOrange}
+  \colorlet{blue}{FruitOrange}
   \colorlet{accent}{LightGreen}
   \setbeamercolor{normal text}{bg=secondary,fg=black}
 \or
   \colorlet{primary}{EmphaGold}
   \colorlet{secondary}{SoleGray}
-  \colorlet{highlight}{LightGold}
+  \colorlet{blue}{LightGold}
   \colorlet{accent}{Bronze}
   \setbeamercolor{normal text}{bg=secondary,fg=white}
   % \setbeamercolor{math text}{bg=secondary,fg=LightGold}
@@ -199,7 +198,7 @@
 \usecolortheme{orchid}
 \usecolortheme{whale}
 
-\setbeamercolor{alerted text}{fg=highlight}
+\setbeamercolor{alerted text}{fg=blue}
 \setbeamercolor{block title alerted}{bg=alerted text.fg!90!black}
 \setbeamercolor{block title example}{bg=accent!60!black}
 \setbeamercolor{background canvas}{bg=secondary}
@@ -237,11 +236,19 @@
 \AtEndPreamble{%
   \IfStrEq{\@sp@lang}{cn}{\hypersetup{CJKbookmarks=true}}{\hypersetup{CJKbookmarks=false}}
   \hypersetup{%
+      pdfpagelabels = true,
+      breaklinks = true,
+      unicode = true,
       pdfauthor = {\@sp@author},
       pdftitle = {\@sp@title},
       pdfkeywords = {spArticle},
-      bookmarks=true,
-      bookmarksopen=true,
+      bookmarks = true,
+      bookmarksopen = true,
+      colorlinks = true,
+      linkcolor = .,
+      citecolor = accent,
+      urlcolor = accent,
+      filecolor = accent,
   }
   \title{\bfseries\@sp@title}
   \subtitle{\@sp@subtitle}
@@ -366,3 +373,4 @@
 
 \newcommand{\hlmath}[2]{\colorbox{#1!17}{$\displaystyle #2$}}
 \newcommand{\hltext}[2]{\colorbox{#1!17}{#2}}
+\newcommand{\mathcalbf}[1]{\boldsymbol{\mathcal{#1}}}
