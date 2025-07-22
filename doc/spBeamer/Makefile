@@ -64,6 +64,17 @@ e4:
 	@rm -f *.aux *.log *.idx *.ind *.ilg *.thm *.toc *.blg *.bbl *.bcf *.out *.nav *.vrb *.snm
 	@rm -f *.fls *.fdb_latexmk *.run.xml *.synctex.gz *.xdv *~ *.lof *.lot
 	@rm -f .metadonnees*
+
+e5:
+	$(XE_COMPILE) en5
+	biber en5
+	$(XE_COMPILE) en5
+	$(XE_COMPILE) en5
+	latexmk -c en5
+	@rm -f *.aux *.log *.idx *.ind *.ilg *.thm *.toc *.blg *.bbl *.bcf *.out *.nav *.vrb *.snm
+	@rm -f *.fls *.fdb_latexmk *.run.xml *.synctex.gz *.xdv *~ *.lof *.lot
+	@rm -f .metadonnees*
+
 e0pdf:
 	$(PDF_COMPILE) en0
 	biber en0
@@ -110,6 +121,16 @@ e4pdf:
 	$(PDF_COMPILE) en4
 	$(PDF_COMPILE) en4
 	latexmk -c en4
+	@rm -f *.aux *.log *.idx *.ind *.ilg *.thm *.toc *.blg *.bbl *.bcf *.out *.nav *.vrb *.snm
+	@rm -f *.fls *.fdb_latexmk *.run.xml *.synctex.gz *.xdv *~ *.lof *.lot
+	@rm -f .metadonnees*
+
+e4pdf:
+	$(PDF_COMPILE) en5
+	biber en5
+	$(PDF_COMPILE) en5
+	$(PDF_COMPILE) en5
+	latexmk -c en5
 	@rm -f *.aux *.log *.idx *.ind *.ilg *.thm *.toc *.blg *.bbl *.bcf *.out *.nav *.vrb *.snm
 	@rm -f *.fls *.fdb_latexmk *.run.xml *.synctex.gz *.xdv *~ *.lof *.lot
 	@rm -f .metadonnees*

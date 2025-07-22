@@ -13,7 +13,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBeamer}[2025/7/3 version: 1.03.06 Author: Sweet Pastry]
+\ProvidesClass{spBeamer}[2025/07/22 version: 1.03.07, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring}
@@ -112,35 +112,65 @@
 \usefonttheme{professionalfonts}
 
 
-% BrowBlack and OrangeRed
+% BrowBlack and OrangeRed, style 0
+% orange #f28165
+% deepgray #303030
+% yellow #f0be52
+% lightorange #f19e58
 \definecolor{orange}{HTML}{f28165}
 \definecolor{deepgray}{HTML}{303030}
 \definecolor{yellow}{HTML}{f0be52}
 \definecolor{lightorange}{HTML}{f19e58}
 
-% White and Black
+% White and Black, style 1
+% Balck #000000
+% White #FFFFFF
+% Gray #BEBEBE
+% DarkGray #4D4D4D
 \definecolor{Black}{HTML}{000000}
 \definecolor{White}{HTML}{FFFFFF}
 \definecolor{Gray}{HTML}{BEBEBE}
 \definecolor{DarkGray}{HTML}{4D4D4D}
 
-% LightGrayWhite and TealBlue
+% LightGrayWhite and TealBlue, style 2
+% SlateGray #3E4E56
+% ReflectiveWhite #F7F7F7
+% TealBlue #2B6777
+% SeafoamGreen #588A8A
 \definecolor{SlateGray}{HTML}{3E4E56}
 \definecolor{ReflectiveWhite}{HTML}{F7F7F7}
 \definecolor{TealBlue}{HTML}{2B6777}
 \definecolor{SeafoamGreen}{HTML}{588A8A}
 
-% White and Deep Green
+% White and Deep Green, style 3
+% OliveGreen #556B2F
+% ReflectiveWhite #F7F7F7
+% FruitOrange #E85D04
+% LightGreen #82C91E
 \definecolor{OliveGreen}{HTML}{556B2F}
 \definecolor{ReflectiveWhite}{HTML}{F7F7F7}
 \definecolor{FruitOrange}{HTML}{E85D04}
 \definecolor{LightGreen}{HTML}{82C91E}
 
-% SoleGray and Gold
+% SoleGray and Gold, style 4
+% SoleGray #494949
+% EmphaGold #E6B878
+% LightGold #FEFCCD
+% Bronze #B87333
 \definecolor{SoleGray}{HTML}{494949}
 \definecolor{EmphaGold}{HTML}{E6B878}
 \definecolor{LightGold}{HTML}{FEFCCD}
 \definecolor{Bronze}{HTML}{B87333}
+
+% Catppuccin Lavender
+% Lavender #CBA6F7
+% DarkPurple #1E1E2E
+% Iris #B4BEFE
+% SoftPurple #F2CDFF
+\definecolor{Lavender}{HTML}{CBA6F7}
+\definecolor{DarkPurple}{HTML}{1E1E2E}
+\definecolor{Iris}{HTML}{B4BEFE}
+\definecolor{SoftPurple}{HTML}{F2CDFF}
 
 
 \makeatletter
@@ -175,6 +205,12 @@
   \colorlet{accent}{Bronze}
   \setbeamercolor{normal text}{bg=secondary,fg=white}
   % \setbeamercolor{math text}{bg=secondary,fg=LightGold}
+\or
+  \colorlet{primary}{Lavender}
+  \colorlet{secondary}{DarkPurple}
+  \colorlet{highlight}{Iris}
+  \colorlet{accent}{SoftPurple}
+  \setbeamercolor{normal text}{bg=secondary,fg=white}
 \else
   \PackageError{spBeamer}{Style index number exceed!}{Choose a smaller int number, 0 default.}
 \fi
