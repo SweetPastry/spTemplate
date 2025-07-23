@@ -1,1 +1,1 @@
-/Users/pastrysweet/Documents/GitHub/spTemplate/spArticle.cls
+../../spArticle.cls

@@ -61,7 +61,8 @@
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{mathtools, amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb}
+\RequirePackage{mathtools, amsmath, amssymb, amsfonts, mathrsfs, esint, yhmath, cancel, tensor, physics, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb}
+\pgfplotsset{compat=1.18}
 \IfStrEq{\@sp@lang}{cn}{%
 \ifxetex\RequirePackage{xeCJK}\fi
 \ifpdf\RequirePackage{ctex}\fi
@@ -88,6 +89,10 @@
     \titleformat{\section}[block]
     {\centering\bfseries\Large}
     {\thesection}{1em}{}
+    \hbadness=10000
+    \vbadness=10000
+    \hfuzz=10pt
+    \vfuzz=10pt
 }
 
 

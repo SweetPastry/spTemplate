@@ -72,7 +72,8 @@
 \PassOptionsToPackage{version=4}{mhchem}
 \PassOptionsToPackage{table}{xcolor}
 \PassOptionsToPackage{most}{tcolorbox}
-\RequirePackage{amsmath, amssymb, amsfonts, ntheorem, mathrsfs, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, tcolorbox}
+\RequirePackage{amsmath, amssymb, amsfonts, ntheorem, mathrsfs, esint, yhmath, cancel, tensor, physics, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, tcolorbox}
+\pgfplotsset{compat=1.18}
 \IfStrEq{\@sp@lang}{cn}{%
 \ifxetex\RequirePackage{xeCJK}\fi
 \ifpdf\RequirePackage{ctex}\fi

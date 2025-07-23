@@ -53,7 +53,8 @@
 
 
 \PassOptionsToPackage{version=4}{mhchem}
-\RequirePackage{amsmath, amssymb, amsthm, amsfonts, mathtools, esint, yhmath, cancel, tensor, physics, chemstyle, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, refcount, multicol, hyperref}
+\RequirePackage{amsmath, amssymb, amsthm, amsfonts, mathtools, esint, yhmath, cancel, tensor, physics, mhchem, chemfig, xcolor, xkcdcolors, graphicx, pgfplots, tabularx, float, cuted, tikz, tikz-cd, circuitikz, array, pdfpages, lipsum, fancyvrb, refcount, multicol, hyperref}
+\pgfplotsset{compat=1.18}
 \IfStrEq{\@sp@lang}{cn}{%
 \ifxetex\RequirePackage{xeCJK}\fi
 \ifpdf\RequirePackage{ctex}\fi
