@@ -13,7 +13,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{spBook}[2025/05/27 version: 1.03.05, Author: Sweet Pastry]
+\ProvidesClass{spBook}[2025/05/27 version: 1.03.06, Author: Sweet Pastry]
 
 
 \RequirePackage{kvoptions, etoolbox, xstring, xparse, ifthen}
@@ -39,14 +39,14 @@
 \relax
 
 
-\newcommand{\@baseclass}{scrbook}
+\newcommand{\@baseclass}{book}
 \newcommand{\spTitle}[1]{\def\@sp@title{#1}}
 \newcommand{\spAuthor}[1]{\def\@sp@author{#1}}
 \newcommand{\spDate}[1]{\def\@sp@date{#1}}
 \newcommand{\spCover}[1]{\def@sp@coverpage{#1}}
 \newcommand{\spCoverpage}[1]{\def@sp@coverpage{#1}}
 \NewDocumentCommand{\spChapter}{om}{%
-    \IfStrEq{\@sp@lang}{cn}{\renewcommand{\chaptername}{章节}}{}%
+    \IfStrEq{\@sp@lang}{cn}{\renewcommand{\chaptername}{章节}}{}
     \IfNoValueTF{#1}{%
     \def\@chaptermark{#2}
     \chapter[#2]{#2}
@@ -430,7 +430,6 @@
 \makeatletter
 \newcommand*{\sp@ifhasfigures}{\ifnum\value{figure}>0 }
 \newcommand*{\sp@ifhastables} {\ifnum\value{table}>0  }
-\newcommand*{\sp@ifhasindex}{\IfFileExists{\jobname.ind}}
 \AtEndDocument{%
     \appendix
     \backmatter
@@ -450,7 +449,7 @@
         \listoftables
     \fi
 
-    \sp@ifhasindex{\printindex[statement]}{}
+    \printindex[statement]
 
     \if@sp@nocite\nocite{*}\fi
     \IfStrEq{\@sp@lang}{en}{%
